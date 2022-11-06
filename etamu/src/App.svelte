@@ -1,9 +1,7 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
-  import RegisterVisit from './pages/RegisterVisit.svelte';
+  import Login from './pages/Login.svelte';
 </script>
 
 <main>
-  <RegisterVisit/>
+  <Login/>
 </main>
