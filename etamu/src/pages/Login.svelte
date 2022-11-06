@@ -86,7 +86,7 @@
       transition: all 0.3s ease;
     }
     
-    input[type="submit"]:hover{
+    button:hover{
       background: #09cca6
     }
 </style>

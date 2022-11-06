@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from "svelte";
     import axios from 'axios';
     import Cookies from 'js-cookie';
     import Select from 'svelte-select';
@@ -77,6 +76,7 @@
         Cookies.set("otp", response.data.data.otp_token, {
             expires: expTime
         })
+        window.location.href = "/registerVisit/verify";
     }
 </script>
 
