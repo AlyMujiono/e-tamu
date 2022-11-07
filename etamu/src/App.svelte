@@ -1,16 +1,16 @@
 <script>
-  import Login from './pages/Login.svelte';
+  import Login from "./pages/Login.svelte";
   import { Router, Link, Route } from "svelte-routing";
-  import Admin from './pages/Admin.svelte';
-  import RegisterVisit from './pages/RegisterVisit.svelte';
-  import VerifyOtp from './pages/VerifyOTP.svelte';
+  import Admin from "./pages/Admin.svelte";
+  import RegisterVisit from "./pages/RegisterVisit.svelte";
+  import VerifyOtp from "./pages/VerifyOTP.svelte";
 </script>
 
 <Router>
   <div>
-    <Route path="admin" component={Admin}/>
-    <Route path="login" component={Login}/>
-    <Route path="registerVisit" component={RegisterVisit}/>
-    <Route path="registerVisit/verify" component={VerifyOtp}/>
+    <Route path="admin" component={Admin} />
+    <Route path="login" component={Login} />
+    <Route path="registervisit" component={RegisterVisit} />
+    <Route path="registervisit/verify" component={VerifyOtp} />
   </div>
 </Router>
