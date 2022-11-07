@@ -33,11 +33,7 @@
         visitedStaffID = undefined;
     }
     async function submitVisit() {
-        let file = undefined;
-
-        if (vaccineCertificate && vaccineCertificate[0]) {
-            file = vaccineCertificate[0];
-        }
+        let file = vaccineCertificate[0];
         console.log({
             fullName,
             email,
@@ -119,7 +115,7 @@
             <input type="file" id="vaccineCertificate" accept="image/png, image/jpeg" bind:files={vaccineCertificate}>
         </div>
         <div class="button-container">
-            <button on:click={submitVisit} disabled={!fullName || !email || !visitIntention || !visitDate || !visitHour || !guestCount || !transportation || !visitedStaffID}>Submit</button>
+            <button on:click={submitVisit} disabled={!fullName || !email || !visitIntention || !visitDate || !visitHour || !guestCount || !transportation || !visitedStaffID || !(vaccineCertificate && vaccineCertificate[0])}>Submit</button>
         </div>
 
     </div>
