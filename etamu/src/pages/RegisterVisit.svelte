@@ -84,6 +84,8 @@
 
 <div class="main-container">
     <div class="form-container">
+        <div class="header">Pengajuan Kunjungan</div>
+        <hr />
         <div class="input-container">
             <label for="fullname">Nama Lengkap</label>
             <input type="text" id="fullname" bind:value={fullName} />
@@ -188,6 +190,11 @@
 </div>
 
 <style>
+    .header {
+        font-size: 20px;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-weight: bold;
+    }
     .form-container {
         width: 400px;
         background: #edeff1;
