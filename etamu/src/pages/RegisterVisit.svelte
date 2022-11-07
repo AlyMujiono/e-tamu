@@ -91,24 +91,36 @@
             <input type="text" id="email" bind:value={email}>
         </div>
         <div class="input-container">
-            <label for="visit_intention">Maksut Kunjungan</label>
+            <label for="visit_intention">Maksud Kunjungan</label>
             <input type="text" id="visit_intention" bind:value={visitIntention}>
         </div>
-        <div class="input-container">
-            <label for="visit_date">Tanggal Kunjungan</label>
-            <input type="date" id="visit_date" bind:value={visitDate}>
+        <div class="row">
+            <div class="col-half">
+                <div class="input-group">
+                    <label for="visit_date">Tanggal Kunjungan</label>
+                    <input type="date" id="visit_date" class="input-half" bind:value={visitDate}>
+                </div>
+            </div>
+            <div class="col-half">
+                <div class="input-group">
+                    <label for="visit_hour">Jam Kunjungan</label>
+                    <input type="time" id="visit_hour" class="input-half" min="09:00" max="17:00" bind:value={visitHour}>
+                </div>
+            </div>
         </div>
-        <div class="input-container">
-            <label for="visit_hour">Jam Kunjungan</label>
-            <input type="time" id="visit_hour" min="09:00" max="17:00" bind:value={visitHour}>
-        </div>
-        <div class="input-container">
-            <label for="guest_count">Jumlah Orang</label>
-            <input type="number" id="guest_count" bind:value={guestCount} min=0>
-        </div>
-        <div class="input-container">
-            <label for="transportation">Transportasi</label>
-            <input type="text" id="transportation" bind:value={transportation} >
+        <div class="row">
+            <div class="col-half-second">
+                <div class="input-group">
+                    <label for="guest_count">Jumlah Orang</label>
+                    <input type="number" id="guest_count" class="input-half" bind:value={guestCount} min=0>
+                </div>
+            </div>
+            <div class="col-half-second">
+                <div class="input-group">
+                    <label for="transportation">Transportasi</label>
+                    <input type="text" id="transportation" class="input-half" bind:value={transportation} >
+                </div>
+            </div>
         </div>
         <div class="input-container">
             <label for="staffVisited">Staff</label>
@@ -126,10 +138,117 @@
 </div>
 
 <style>
+    .form-container{
+      width: 400px;
+      background: #edeff1;
+      margin: 0px auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+    }
     .input-container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 5px;
+        margin-bottom: 0.2em;
+    }
+    input[type="text"]{
+      display: block;
+      width: 309px;
+      height: 25px;
+      margin: 15px auto;
+      background: #fff;
+      border: 0px;
+      padding: 5px;
+      font-size: 16px;
+       border: 2px solid #fff;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    }
+
+    input[type="text"]:focus{
+      border: 2px solid #1abc9d
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 5px;
+        margin-bottom: 0.2em;
+    }
+    .col-half {
+      padding-right: 10px;
+      float: left;
+      width: 50%;
+    }
+    .col-half:last-of-type {
+      padding-right: 0;
+    }
+    .col-half-second {
+      padding-right: 10px;
+      float: left;
+      width: 30%;
+    }
+    .col-half-second:last-of-type {
+      padding-right: 0;
+      width: 60%;
+    }
+    .input-group {
         display: flex;
         flex-direction: column;
         gap: 5px;
         margin-bottom: 0.2em;
+    }
+    .input-half {
+      display: block;
+      margin: 15px auto;
+      height: 25px;
+      width: 90%;
+      background: #fff;
+      border: 0px;
+      padding: 5px;
+      font-size: 16px;
+       border: 2px solid #fff;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    }
+
+    #transportation {      
+      width: 100%;
+      margin-right: 0px;      
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+    button{
+      display: block;
+      background: #1abc9d;
+      width: 314px;
+      padding: 12px;
+      cursor: pointer;
+      color: #fff;
+      border: 0px;
+      margin: auto;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      font-size: 17px;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover{
+      background: #09cca6
     }
 </style>

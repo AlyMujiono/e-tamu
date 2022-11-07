@@ -41,7 +41,7 @@
 <style>
     .login-container{
       width: 400px;
-      height: 300px;
+      padding-bottom: 20px; 
       background: #edeff1;
       margin: 0px auto;
       padding-top: 20px;
