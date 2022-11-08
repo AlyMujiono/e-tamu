@@ -40,7 +40,7 @@
                     </div>
             </fieldset>
             <div class="button-container">
-                <button on:click={SubmitOTP} disabled={OTP == ''}>Login</button>
+                <button on:click={SubmitOTP} disabled={OTP == ''}>Verify</button>
             </div>
         </div>
     {/if}

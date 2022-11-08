@@ -8,11 +8,8 @@
 </script>
 
 <Router>
-  <div>
-    <Route path="admin" component={Admin}/>
-    <Route path="login" component={Login}/>
-    <Route path="registervisit" component={RegisterVisit}/>
-    <Route path="registervisit/verify" component={VerifyOtp}/>
-    <Route path="visit" component={VisitInfo}/>
-  </div>
+    <Route path="admin" component={Admin} />
+    <Route path="login" component={Login} />
+    <Route path="registervisit" component={RegisterVisit} />
+    <Route path="registervisit/verify" component={VerifyOtp} />
 </Router>
