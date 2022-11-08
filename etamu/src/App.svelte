@@ -4,13 +4,15 @@
   import Admin from './pages/Admin.svelte';
   import RegisterVisit from './pages/RegisterVisit.svelte';
   import VerifyOtp from './pages/VerifyOTP.svelte';
+  import VisitInfo from './pages/VisitInfo.svelte';
 </script>
 
 <Router>
   <div>
     <Route path="admin" component={Admin}/>
     <Route path="login" component={Login}/>
-    <Route path="registerVisit" component={RegisterVisit}/>
-    <Route path="registerVisit/verify" component={VerifyOtp}/>
+    <Route path="registervisit" component={RegisterVisit}/>
+    <Route path="registervisit/verify" component={VerifyOtp}/>
+    <Route path="visit" component={VisitInfo}/>
   </div>
 </Router>

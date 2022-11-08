@@ -72,7 +72,7 @@
         Cookies.set("otp", response.data.data.otp_token, {
             expires: expTime
         })
-        window.location.href = "/registerVisit/verify";
+        window.location.href = "/registervisit/verify";
     }
 </script>
 
