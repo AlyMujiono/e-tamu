@@ -34,7 +34,7 @@
             <p>Waktu Kunjungan : {visit.visit_hour}</p>
             <p>Jumlah Pengunjung : {visit.guest_count}</p>
             <p>Transportasi : {visit.transportation}</p>
-            <img src="{visit.vaccine_certificate}" alt="sertifikat vaksin">
+            <img src="{"http://localhost:8000/"+visit.vaccine_certificate}" alt="sertifikat vaksin">
         </div>
     </div>
     {:else if state == false}

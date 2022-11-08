@@ -192,7 +192,7 @@
         font-weight: bold;
     }
     .form-container {
-        width: 400px;
+        width: 500px;
         background: #edeff1;
         margin: 0px auto;
         padding-top: 20px;
