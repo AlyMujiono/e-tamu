@@ -35,11 +35,7 @@
         visitedStaffID = undefined;
     }
     async function submitVisit() {
-        let file = undefined;
-
-        if (vaccineCertificate && vaccineCertificate[0]) {
-            file = vaccineCertificate[0];
-        }
+        let file = vaccineCertificate[0];
         console.log({
             fullName,
             email,
@@ -76,8 +72,8 @@
         var expTime = new Date(new Date().getTime() + 60 * 60 * 1000);
 
         Cookies.set("otp", response.data.data.otp_token, {
-            expires: expTime,
-        });
+            expires: expTime
+        })
         window.location.href = "/registervisit/verify";
     }
 </script>
@@ -196,7 +192,7 @@
         font-weight: bold;
     }
     .form-container {
-        width: 400px;
+        width: 500px;
         background: #edeff1;
         margin: 0px auto;
         padding-top: 20px;
