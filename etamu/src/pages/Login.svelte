@@ -25,7 +25,7 @@
     }
 </script>
 
-<body>
+<div class="main-container">
     <div class="container">
         <div class="cover">
             <img class="backImg" src="src\assets\img\33.jpg" alt="" />
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-</body>
+</div>
 
 <style>
     /* Google Font Link */
@@ -82,12 +82,15 @@
         font-family: "Poppins", sans-serif;
     }
 
-    body {
+    :root {
+		background: #135b4e;
+	}
+	
+    .main-container {
         min-height: 85vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #135b4e;
         padding: 30px;
     }
 

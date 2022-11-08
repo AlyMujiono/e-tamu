@@ -7,10 +7,8 @@
 </script>
 
 <Router>
-  <div>
     <Route path="admin" component={Admin} />
     <Route path="login" component={Login} />
     <Route path="registervisit" component={RegisterVisit} />
     <Route path="registervisit/verify" component={VerifyOtp} />
-  </div>
 </Router>
