@@ -89,15 +89,19 @@
 
             <div class="left-container">
                 <div class="input-container">
+                    <label class="input-label" for="nama-lengkap">Nama Lengkap</label>
                     <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" placeholder="Nama Lengkap" bind:value={fullName}>
                 </div>
                 <div class="input-container">
+                    <label class="input-label" for="tujaun">Tujuan</label>
                     <input type="text" name="tujuan" id="tujuan" class="input-field" placeholder="Tujuan" bind:value={visitIntention}>
                 </div>
                 <div class="input-container">
+                    <label class="input-label" for="jumlah-pengunjung">Jumlah Pengunjung</label>
                     <input type="number" name="jumlah pengunjung" id="jumlah-pengunjung" class="input-field" placeholder="Jumlah Pengunjung" bind:value={guestCount}>
                 </div>
                 <div class="input-container">
+                    <label class="input-label" for="transportasi">Transportasi</label>
                     <input type="text" name="transportasi" id="transportasi" class="input-field" placeholder="Transportasi" bind:value={transportation}>
                 </div>
                 <div class="input-container">
@@ -195,9 +199,12 @@
     }
     .form-container {
         background-color: #1A1A1A;
-        padding: 6vh;
+        padding: 2vh;
         border-radius: 2vh;
-        margin-bottom: 3vh;
+        margin-bottom: 5vh;
+        /* display: flex; */
+        /* justify-self: flex-start; */
+        /* place-self: w; */
     }
     .left-container {
         display: flex;
@@ -222,7 +229,8 @@
     .input-container {
         display: flex;
         flex-direction: column;
-        margin: 1.5vh 2vh;
+        margin: 0.5vh 1vh;
+        /* color : */
         /* --margin : 0 10vh; */
         /* --indicatorWidth : 100%; */
     }
@@ -231,8 +239,10 @@
         border-radius: 1vh;
     }
     .input-label {
-        margin-bottom: 1vh;
-        color: grey;
+        margin-bottom: 0.2vh;
+        color: white;
+        align-self: flex-start;
+        font-size: small;
     }
     .middle-container {
         width: 50vh;
