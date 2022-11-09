@@ -83,7 +83,7 @@
     }
 
     :root {
-		background: #135b4e;
+		background: #828282;
 	}
 	
     .main-container {

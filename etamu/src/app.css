@@ -3,13 +3,25 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    background-color: #135b4e;
+    background-color: #828282;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    /* height: 100%; */
 }
+/* :global(*) {
+    margin: 0;
+    padding: 0;
+} */
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    /* min-width: fit-content; */
+}
+
 
 a {
     font-weight: 500;
@@ -31,9 +43,12 @@ h1 {
 }
 
 #app {
-    max-width: 1280px;
+    
+    /* max-width: 1280px; */
+    width: auto;
+    height: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    /* padding: 2rem; */
     text-align: center;
 }
 
@@ -60,7 +75,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
      :root {
-        color: #213547;
+        color: white;
         background-color: #ffffff;
     }
     a:hover {
