@@ -2,7 +2,8 @@
     import axios from "axios";
     import Cookies from "js-cookie";
     import Select from "svelte-select";
-    import Logo from "../assets/img/Logo.png"
+    // import Logo from "../assets/img/Logo.png"
+  import TopNav from "../components/TopNav.svelte";
     let fullName = "";
     let email = "";
     let visitIntention = "";
@@ -79,11 +80,8 @@
     }
 </script>
 
+<TopNav title="Pengajuan Kunjungan"/>
 <div class="main-container">
-    <div class="topnav">
-        <img src="{Logo}" alt="Logo labinta">
-        <h4>Formulir Pengajuan Kunjungan</h4>
-    </div>
     <div class="form-container">
         <div class="top-container">
 
@@ -171,10 +169,10 @@
         align-items: center;
         height: 100vh;
         align-self: center;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         width: auto;
     }
-    .topnav {
+    /* .topnav {
         top: 0;
         left: 0;
         display :block;
@@ -186,7 +184,7 @@
     }
     .topnav img {
         margin-right: 10vh;
-    }
+    } */
     .top-container {
         display: flex;
         flex-direction: row;
@@ -201,7 +199,8 @@
         background-color: #1A1A1A;
         padding: 2vh;
         border-radius: 2vh;
-        margin-bottom: 5vh;
+        margin: 2vh;
+        /* margin-bottom: 5vh; */
         /* display: flex; */
         /* justify-self: flex-start; */
         /* place-self: w; */
