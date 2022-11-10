@@ -91,6 +91,10 @@
                     <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" placeholder="Nama Lengkap" bind:value={fullName}>
                 </div>
                 <div class="input-container">
+                    <label class="input-label" for="email">Email</label>
+                    <input type="text" name="email" id="email" class="input-field" placeholder="Email" bind:value={email}>
+                </div>
+                <div class="input-container">
                     <label class="input-label" for="tujaun">Tujuan</label>
                     <input type="text" name="tujuan" id="tujuan" class="input-field" placeholder="Tujuan" bind:value={visitIntention}>
                 </div>
