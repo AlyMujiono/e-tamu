@@ -2,6 +2,8 @@
     import axios from "axios";
     import Cookies from "js-cookie";
     import Select from "svelte-select";
+    // import Logo from "../assets/img/Logo.png"
+  import TopNav from "../components/TopNav.svelte";
     let fullName = "";
     let email = "";
     let visitIntention = "";
@@ -78,7 +80,194 @@
     }
 </script>
 
+<TopNav title="Pengajuan Kunjungan"/>
 <div class="main-container">
+    <div class="form-container">
+        <div class="top-container">
+
+            <div class="left-container">
+                <div class="input-container">
+                    <label class="input-label" for="nama-lengkap">Nama Lengkap</label>
+                    <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" placeholder="Nama Lengkap" bind:value={fullName}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="email">Email</label>
+                    <input type="text" name="email" id="email" class="input-field" placeholder="Email" bind:value={email}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="tujaun">Tujuan</label>
+                    <input type="text" name="tujuan" id="tujuan" class="input-field" placeholder="Tujuan" bind:value={visitIntention}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="jumlah-pengunjung">Jumlah Pengunjung</label>
+                    <input type="number" name="jumlah pengunjung" id="jumlah-pengunjung" class="input-field" placeholder="Jumlah Pengunjung" bind:value={guestCount}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="transportasi">Transportasi</label>
+                    <input type="text" name="transportasi" id="transportasi" class="input-field" placeholder="Transportasi" bind:value={transportation}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="tanggal">Tanggal Kunjungan</label>
+                    <input type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" bind:value={visitDate}>
+                </div>
+                <div class="input-container">
+                    <label class="input-label" for="waktu">Waktu Kunjungan</label>
+                    <input type="time" name="waktu" id="waktu" class="input-field" placeholder="Jam Kunjungan" bind:value={visitHour}>
+                </div>
+            </div>
+            <div class="middle-container">
+                <div class="input-container">
+                    <label for="tertuju" class="input-label">Tertuju</label>
+                    <Select
+                        id="tertuju"
+                        {optionIdentifier}
+                        {labelIdentifier}
+                        loadOptions={getAllUsers}
+                        on:select={handleSelect}
+                        on:clear={handleClear}
+                    />
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="input-container">
+                    <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
+                    <input
+                        type="file"
+                        id="sertifikatVaksin"
+                        accept="image/png, image/jpeg"
+                        bind:files={vaccineCertificate}
+                    />
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="bottom-container">
+            <div class="button-container">
+                <button id="submit-button"
+                    on:click={submitVisit}
+                    disabled={!fullName ||
+                        !email ||
+                        !visitIntention ||
+                        !visitDate ||
+                        !visitHour ||
+                        !guestCount ||
+                        !transportation ||
+                        !visitedStaffID}>Ajukan Kunjungan</button
+                >
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<style global>
+    #submit-button {
+        background-color: #00B14C;
+        color: white;
+    }
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        align-self: center;
+        /* justify-content: space-between; */
+        width: auto;
+    }
+    /* .topnav {
+        top: 0;
+        left: 0;
+        display :block;
+        display: flex;
+        align-self: flex-start;
+        align-items: center;
+        background-color: #1A1A1A;
+        width: 100%;
+    }
+    .topnav img {
+        margin-right: 10vh;
+    } */
+    .top-container {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        align-self: center;
+    }
+    .bottom-container {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .form-container {
+        background-color: #1A1A1A;
+        padding: 2vh;
+        border-radius: 2vh;
+        margin: 2vh;
+        /* margin-bottom: 5vh; */
+        /* display: flex; */
+        /* justify-self: flex-start; */
+        /* place-self: w; */
+    }
+    .left-container {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        /* padding-top: 3vh; */
+    }
+    .right-container {
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        /* padding-top: 3vh; */
+    }
+    .right-container label {
+        display: flex;
+        align-self: flex-start;
+    }
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0.5vh 1vh;
+        /* color : */
+        /* --margin : 0 10vh; */
+        /* --indicatorWidth : 100%; */
+    }
+    .input-field {
+        padding: 1.5vh;
+        border-radius: 1vh;
+    }
+    .input-label {
+        margin-bottom: 0.2vh;
+        color: white;
+        align-self: flex-start;
+        font-size: small;
+    }
+    .middle-container {
+        width: 50vh;
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        /* align-items: flex-start; */
+        /* justify-content: flex-start; */
+    }
+    .middle-container label {
+        display: flex;
+        align-self: flex-start;
+    }
+    
+    .button-container {
+        display: flex;
+        align-self: flex-end;
+        
+    }
+</style>
+
+<!-- <div class="main-container">
     <div class="form-container">
         <div class="header">Pengajuan Kunjungan</div>
         <hr />
@@ -183,9 +372,9 @@
             >
         </div>
     </div>
-</div>
+</div> -->
 
-<style>
+<!-- <style>
     .header {
         font-size: 20px;
         font-family: Georgia, "Times New Roman", Times, serif;
@@ -304,4 +493,4 @@
     button:hover {
         background: #09cca6;
     }
-</style>
+</style> -->

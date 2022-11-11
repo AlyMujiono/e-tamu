@@ -83,10 +83,9 @@
     }
 
     :root {
-        background: #135b4e;
-    }
-
-    .main-container {
+		background: #828282;
+	}
+	    .main-container {
         min-height: 85vh;
         display: flex;
         align-items: center;
