@@ -85,8 +85,7 @@
     :root {
 		background: #828282;
 	}
-	
-    .main-container {
+	    .main-container {
         min-height: 85vh;
         display: flex;
         align-items: center;
@@ -176,6 +175,7 @@
         font-weight: 500;
         border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
+        text-align: revert;
     }
 
     .form-content .input-box input:focus,
