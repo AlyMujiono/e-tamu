@@ -1,14 +1,13 @@
-
 <script>
-    import Logo from "../assets/img/Logo.png"
+    import Logo from "../assets/img/labinta_logo.png";
 
-    export let title = '';
+    export let title = "";
 </script>
 
 <div class="main-container">
     <div class="topnav">
-        <img src="{Logo}" alt="Logo labinta">
-        <h4>{title}</h4>
+        <img class="img" src={Logo} alt="Logo labinta" />
+        <h4 class="name">{title}</h4>
     </div>
 </div>
 
@@ -16,14 +15,20 @@
     .topnav {
         top: 0;
         left: 0;
-        display :block;
+        display: block;
         display: flex;
         align-self: flex-start;
         align-items: center;
-        background-color: #1A1A1A;
+        background-color: #1a1a1a;
         width: 100%;
     }
     .topnav img {
         margin-right: 10vh;
+    }
+    .name {
+        color: white;
+    }
+    .img {
+        width: 100px;
     }
 </style>
