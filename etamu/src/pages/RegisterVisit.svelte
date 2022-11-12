@@ -202,7 +202,6 @@
     .form-container {
         background-color: #1A1A1A;
         padding: 2vh;
-        border-radius: 2vh;
         margin: 2vh;
         /* margin-bottom: 5vh; */
         /* display: flex; */
