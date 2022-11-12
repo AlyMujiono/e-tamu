@@ -1,0 +1,415 @@
+<script>
+  import TopNav from "../components/TopNav.svelte";
+	let navOpen = false;
+	
+	function handleNav() {
+		navOpen = !navOpen;		
+	}
+</script>
+
+<TopNav/>
+<button class="logout-header">Logout</button>
+<div class="app">
+		<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar" class:open={navOpen}>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png" class="profile">
+			<h3>Admin</h3>
+			
+			<nav class="menu">
+				<a href="#a" class="menu-item is-active">Daftar Kunjungan</a>
+				<a href="#b" class="menu-item">Daftar User</a>
+				<a href="#c" class="menu-item">Export Data</a>
+			</nav>
+
+			<button class="logout-sidebar">Logout</button>
+
+		</aside>
+
+		<main class="content">
+			<h1>Daftar Kunjungan</h1>
+			<div class="row">
+				<div class="input-container">
+            	    <label class="input-label" for="tanggal">Tanggal Awal</label>
+            	    <input type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" >
+            	</div>
+            	<div class="input-container">
+            	    <label class="input-label" for="tanggal">Tanggal Akhir</label>
+            	    <input type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" >
+            	</div>
+            </div>
+            	<table>
+            		<thead>
+					<tr>
+						<th>Nama Tamu</th>
+						<th>Yang dituju</th>
+						<th>Waktu</th>
+						<th>Aksi</th>
+					<tr/>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Rahmat</td>
+						<td>John</td>
+						<td>1/11/2222</td>
+						<td>
+							<div class="row-button">
+								<button class="btn-biru">Detail</button>
+								<button class="btn-biru">Edit</button>
+								<button class="btn-merah">Hapus</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Rahmat</td>
+						<td>John</td>
+						<td>1/11/2222</td>
+						<td>
+							<div class="row-button">
+								<button class="btn-biru">Detail</button>
+								<button class="btn-biru">Edit</button>
+								<button class="btn-merah">Hapus</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Rahmat</td>
+						<td>John</td>
+						<td>1/11/2222</td>
+						<td>
+							<div class="row-button">
+								<button class="btn-biru">Detail</button>
+								<button class="btn-biru">Edit</button>
+								<button class="btn-merah">Hapus</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Rahmat</td>
+						<td>John</td>
+						<td>1/11/2222</td>
+						<td>
+							<div class="row-button">
+								<button class="btn-biru">Detail</button>
+								<button class="btn-biru">Edit</button>
+								<button class="btn-merah">Hapus</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Rahmat</td>
+						<td>John</td>
+						<td>1/11/2222</td>
+						<td>
+							<div class="row-button">
+								<button class="btn-biru">Detail</button>
+								<button class="btn-biru">Edit</button>
+								<button class="btn-merah">Hapus</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+            </table>
+		</main>
+	</div>
+
+<style>
+.logout-header {
+    position: absolute;
+    right: 5%;
+    top: 20px;
+    
+    width: 85px;
+	height: 40px;
+	
+	/* Blue */	
+	background: #406AA8;
+	border-radius: 4px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;	
+	
+	/* White */	
+	color: #FFFFFF;
+ }
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.app {
+	display: flex;
+	min-height: 90vh;
+}
+
+.menu-toggle {
+	display: none;
+	position: fixed;
+	top: 2rem;
+	right: 2rem;
+	width: 60px;
+	height: 60px;
+	border-radius: 99px;
+	background-color: #2e3047;
+	cursor: pointer;
+}
+
+.hamburger {
+	position: relative;
+	top: calc(50% - 2px);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 32px;
+}
+
+.hamburger > span,
+.hamburger > span::before,
+.hamburger > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background-color: #FFF;
+  transition-duration: .25s;
+}
+
+.hamburger > span::before {
+  content: '';
+  top: -8px;
+}
+.hamburger > span::after {
+  content: '';
+  top: 8px;
+}
+.menu-toggle.is-active .hamburger > span {
+  transform: rotate(45deg);
+}
+.menu-toggle.is-active .hamburger > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+.menu-toggle.is-active .hamburger > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+.profile {
+	width: 100px;
+	height: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 50px;
+}
+.sidebar {
+	flex: 1 1 0;
+	max-width: 230px;
+	padding: 2rem 1rem;
+	background-color: #1A1A1A;;
+}
+
+.sidebar h3 {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 32px;
+	/* identical to box height, or 133% */
+	
+	text-align: center;
+}
+
+.sidebar .menu {
+	margin: 0 -1rem;
+}
+
+.sidebar .menu .menu-item {
+	display: block;
+	padding: 1em;
+	color: #FFF;
+	text-decoration: none;
+	transition: 0.2s linear;
+}
+
+.sidebar .menu .menu-item:hover,
+.sidebar .menu .menu-item.is-active {
+	background: #406AA8;
+	border-radius: 4px;
+}
+
+.sidebar .menu .menu-item:hover {
+	background: #406AA8;
+	border-radius: 4px;
+}
+
+.logout-sidebar { 
+    width: 85px;
+	height: 40px;
+	
+	/* Blue */	
+	background: #406AA8;
+	border-radius: 4px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;	
+	
+	/* White */	
+	color: #FFFFFF;
+
+	visibility: hidden;
+ }
+
+.content {
+	flex: 1 1 0;
+	padding: 2rem;
+}
+
+.content h1 {
+	width: 304px;
+	height: 44px;
+	left: 252px;
+	top: 91px;
+	
+	/* Heading-2 */
+	font-style: normal;
+	font-weight: 600;
+	font-size: 36px;
+	line-height: 44px;
+	
+	/* White */
+	color: #FFFFFF;
+}
+
+.content p {
+	color: #707793;
+}
+
+.row {
+	display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 0.2em;
+    justify-content: right;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 0.2em;
+}
+input[type="date"] {
+    display: block;
+    width: 120px;
+    height: 25px;
+    margin: 15px auto;
+    background: #fff;
+    border: 0px;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+input[type="date"]:focus {
+    border: 2px solid #1abc9d;
+}
+
+table {
+	border: 1px solid #37393A;
+	background-color: #37393A;;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+table td, table th {
+	border: 1px solid #37393A;
+	padding: 10px 10px;
+}
+table tbody td {
+	font-size: 13px;
+}	
+table tr:nth-child(even) {
+	background: #37393A;
+}
+table thead {
+	background: #37393A;
+	border-bottom: 2px solid #444444;
+}
+table thead th {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border-bottom: 2px solid #D0E4F5;
+}
+table thead th:first-child {
+	border-left: none;
+}
+
+.row-button {
+	display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 0.2em;
+    justify-content: center;
+}
+.btn-biru {
+	width: 50px;
+	height: 25px;
+	
+	/* Blue */	
+	background: #406AA8;
+	border-radius: 4px;
+}
+.btn-merah {
+	width: 50px;
+	height: 25px;
+	
+	/* Blue */	
+	background: #F73C3C;
+	border-radius: 4px;
+}
+
+@media (max-width: 1024px) {
+	.sidebar {
+		max-width: 200px;
+	}
+}
+
+@media (max-width: 768px) {
+	.menu-toggle {
+		display: block;
+	}
+	.content {
+		padding-top: 8rem;
+	}
+	.sidebar {
+		position: fixed;
+		top: 0;
+		left: -300px;
+		height: 100vh;
+		width: 100%;
+		max-width: 300px;
+		transition: 0.2s linear;
+	}
+
+	.open {
+		left: 0;
+	}
+	.logout-header {
+		visibility: hidden;
+	}
+	.logout-sidebar {
+		visibility: visible;
+	}
+}
+</style>
