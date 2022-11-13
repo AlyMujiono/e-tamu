@@ -24,7 +24,7 @@
   <Route path="daftaruser" component={DaftarUser} />
   <Route path="buatuser" component={BuatUser} />
   <Route path="visitinfoadmin" component={VisitInfoAdmin} />
-  <Route Path="email_otp" component={EmailOtp} />
-  <Route Path="email_id_visit" component={EmailIdVisit} />
-  <Route Path="email_notifikasi_visit" component={EmailNotifVisit} />
+  <Route path="otpemail" component={EmailOtp} />
+  <Route path="email_idvisit" component={EmailIdVisit} />
+  <Route path="email_notif" component={EmailNotifVisit} />
 </Router>

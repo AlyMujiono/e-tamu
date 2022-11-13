@@ -15,7 +15,10 @@
             <h3>Kunjungan Baru</h3>
             <p>Anda menerima permintaan kunjungan atas nama</p>
             <label for="name" class="name">Albert Einstein</label>
-            <br />
+            <div>
+                <h5>Waktu Kunjungan</h5>
+                <h6>Tanggal Kunjungan</h6>
+            </div>
             <p>Dengan Id kunjungan</p>
             <div class="id">
                 <label for="id">123456</label>
@@ -54,6 +57,17 @@
     h3 {
         color: white;
         margin-top: 50px;
+    }
+    h5 {
+        color: white;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    h6 {
+        color: white;
+        font-size: 15px;
+        margin-top: -25px;
+        margin-bottom: 10px;
     }
     p {
         color: white;
