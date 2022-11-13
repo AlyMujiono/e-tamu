@@ -1,4 +1,5 @@
 <script>
+    import { Link } from "svelte-routing";
     import axios from "axios";
     import Cookies from "js-cookie";
     import Logo from "../assets/img/logolabinta.png";
@@ -9,13 +10,18 @@
         <div class="logo">
             <img src={Logo} alt="Logo labinta" />
             <h2>PT. Sugar Labinta</h2>
-            <h3>Kode OTP</h3>
-            <p>Berikut adalah kode OTP Verivikasi anda</p>
-            <div class="otp">
-                <label for="otp">123456</label>
+        </div>
+        <div>
+            <h3>Kunjungan Baru</h3>
+            <p>Anda menerima permintaan kunjungan atas nama</p>
+            <label for="name" class="name">Albert Einstein</label>
+            <br />
+            <p>Dengan Id kunjungan</p>
+            <div class="id">
+                <label for="id">123456</label>
             </div>
-            <p>Silahkan masukan kode OTP anda di halaman verifikasi E-mail</p>
-            <a href="#3">Klik Disni</a>
+            <br />
+            <p>Silahkan periksa detail kunjungan dari dashboard anda</p>
         </div>
     </div>
 </div>
@@ -47,13 +53,20 @@
     }
     h3 {
         color: white;
+        margin-top: 50px;
     }
     p {
         color: white;
+        margin-top: 20px;
     }
-    .otp {
+    .id {
         font-size: 50px;
         font-family: cursive;
         color: aqua;
+    }
+    .name {
+        font-size: 30px;
+        font-family: "Courier New", Courier, monospace;
+        color: yellow;
     }
 </style>

@@ -10,6 +10,8 @@
   import BuatUser from "./pages/BuatUser.svelte";
   import VisitInfoAdmin from "./pages/VisitInfoAdmin.svelte";
   import EmailOtp from "./pages/EmailOTP.svelte";
+  import EmailIdVisit from "./pages/EmailIdVisit.svelte";
+  import EmailNotifVisit from "./pages/EmailNotifVisit.svelte";
 </script>
 
 <Router>
@@ -23,4 +25,6 @@
   <Route path="buatuser" component={BuatUser} />
   <Route path="visitinfoadmin" component={VisitInfoAdmin} />
   <Route Path="email_otp" component={EmailOtp} />
+  <Route Path="email_id_visit" component={EmailIdVisit} />
+  <Route Path="email_notifikasi_visit" component={EmailNotifVisit} />
 </Router>
