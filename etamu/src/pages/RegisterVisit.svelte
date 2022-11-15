@@ -194,6 +194,7 @@
                     <input
                         type="file"
                         id="sertifikatVaksin"
+                        style="color: white;"
                         accept="image/png, image/jpeg"
                         bind:files={vaccineCertificate}
                     />
@@ -448,6 +449,9 @@
 </style> -->
 
 <style global>
+    :root {
+        color: black;
+    }
     #submit-button {
         background-color: #00b14c;
         color: white;

@@ -88,7 +88,6 @@
 			<nav class="menu">
 				<a href="/admin/daftarkunjungan" class="menu-item">Daftar Kunjungan</a>
 				<a href="#b" class="menu-item is-active">Daftar User</a>
-				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
 
 			<button class="logout-sidebar">Logout</button>

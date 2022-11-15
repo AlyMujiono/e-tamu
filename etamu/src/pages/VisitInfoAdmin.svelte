@@ -106,7 +106,7 @@
             <input class="input-id" type="text" id="visit_id" bind:value={visit_id} placeholder="ID Kunjungan">
         </div>
         <div class="button-container">
-            <button on:click={searchVisit} disabled={!visit_id}>Submit</button>
+            <button id="btn-submit" on:click={searchVisit} disabled={!visit_id}>Submit</button>
         </div>
         <h2>Id Kunjungan tidak ditemukan! Periksa kembali ID kunjungan</h2>
     </div>
@@ -119,7 +119,7 @@
             <input class="input-id" type="text" id="visit_id" bind:value={visit_id} placeholder="ID Kunjungan">
         </div>
         <div class="button-container">
-            <button on:click={searchVisit} disabled={!visit_id}>Submit</button>
+            <button id="btn-submit" on:click={searchVisit} disabled={!visit_id}>Submit</button>
         </div>
     </div>
     {/if}
@@ -280,6 +280,24 @@
     border-radius: 5px;
 }
 input {
+    color: #FFFFFF;
+}
+#btn-submit {
+    position: absolute;
+    width: 261px;
+    height: 40px;
+    right: 10%;
+    top: 55%;
+    
+    background: #406AA8;
+    border-radius: 5px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 0px;
+    /* or 150% */    
+    
     color: #FFFFFF;
 }
 #batal-btn {

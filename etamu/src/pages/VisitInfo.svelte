@@ -282,6 +282,7 @@ button {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
+    line-height: 0px;
     /* or 150% */    
     
     color: #FFFFFF;
