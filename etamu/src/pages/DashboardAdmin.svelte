@@ -1,10 +1,111 @@
 <script>
-  import TopNav from "../components/TopNav.svelte";
+	import axios from "axios";
+	import Cookie from "js-cookie";
+	import { onMount } from "svelte";
+	import TopNav from "../components/TopNav.svelte";
 	let navOpen = false;
+	let listOfVisit = [];
+	let startDate;
+	let endDate;
+	let token = Cookie.get('token');
 	
 	function handleNav() {
 		navOpen = !navOpen;		
 	}
+	async function getAllVisit() {
+		try {
+				const response = await axios.get(
+					`http://localhost:8000/api/v1/visits`, 
+					{
+						headers: {
+							"Authorization": `Bearer ${token}`
+						}
+					}
+				);
+				listOfVisit = response.data.data;
+				
+				listOfVisit.forEach(async (visit, index) => {
+					const res = await axios.get(
+						`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					)
+
+					let user_visited_name = res.data.data.user_name;
+					listOfVisit[index] = {...visit, user_visited_name};
+				});
+				console.log(listOfVisit);
+				listOfVisit = listOfVisit
+			} catch (error) {
+				listOfVisit = [];
+			}
+	}
+
+	async function getAllVisitByDate() {
+		if (!startDate || !endDate) {
+			getAllVisit();
+			return
+		}
+		
+		try {
+				const response = await axios.get(
+					`http://localhost:8000/api/v1/visits/date`, 
+					{
+						headers: {
+							"Authorization": `Bearer ${token}`
+						}, 
+						params: { start_date: startDate, end_date: endDate }
+					}
+				);
+				listOfVisit = response.data.data;
+				
+				listOfVisit.forEach(async (visit, index) => {
+					const res = await axios.get(
+						`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					)
+
+					let user_visited_name = res.data.data.user_name;
+					listOfVisit[index] = {...visit, user_visited_name};
+				});
+				console.log(listOfVisit);
+				listOfVisit = listOfVisit
+			} catch (error) {
+				listOfVisit = [];
+			}
+	}
+
+	onMount(
+		async () => {
+
+			if (token === '') {
+				window.location.href = "/login";
+			}
+
+			try {
+				const response = await axios.get(
+					`http://localhost:8000/api/v1/visits`, 
+					{
+						headers: {
+							"Authorization": `Bearer ${token}`
+						}
+					}
+				);
+				listOfVisit = response.data.data;
+				
+				listOfVisit.forEach(async (visit, index) => {
+					const res = await axios.get(
+						`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					)
+
+					let user_visited_name = res.data.data.user_name;
+					listOfVisit[index] = {...visit, user_visited_name};
+				});
+				listOfVisit = listOfVisit
+			} catch (error) {
+				listOfVisit = [];
+			}
+			
+			
+		}
+	)
 </script>
 
 <TopNav/>
@@ -22,7 +123,7 @@
 			
 			<nav class="menu">
 				<a href="#a" class="menu-item is-active">Daftar Kunjungan</a>
-				<a href="#b" class="menu-item">Daftar User</a>
+				<a href="daftaruser" class="menu-item">Daftar User</a>
 				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
 
@@ -35,11 +136,11 @@
 			<div class="row">
 				<div class="input-container">
             	    <label class="input-label" for="tanggal">Tanggal Awal</label>
-            	    <input type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" >
+            	    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" bind:value={startDate} >
             	</div>
             	<div class="input-container">
             	    <label class="input-label" for="tanggal">Tanggal Akhir</label>
-            	    <input type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" >
+            	    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" bind:value={endDate} >
             	</div>
             </div>
             	<table>
@@ -52,66 +153,20 @@
 					<tr/>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Rahmat</td>
-						<td>John</td>
-						<td>1/11/2222</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Detail</button>
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>Rahmat</td>
-						<td>John</td>
-						<td>1/11/2222</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Detail</button>
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>Rahmat</td>
-						<td>John</td>
-						<td>1/11/2222</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Detail</button>
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>Rahmat</td>
-						<td>John</td>
-						<td>1/11/2222</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Detail</button>
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>Rahmat</td>
-						<td>John</td>
-						<td>1/11/2222</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Detail</button>
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
+					{#each listOfVisit as visit}
+						<tr>
+							<td>{visit.guest_name}</td>
+							<td>{visit.user_visited_name}</td>
+							<td>{visit.visit_date}</td>
+							<td>
+								<div class="row-button">
+									<button class="btn-biru">Detail</button>
+									<button class="btn-biru">Edit</button>
+									<button class="btn-merah">Hapus</button>
+								</div>
+							</td>
+						</tr>
+					{/each}
 				</tbody>
             </table>
 		</main>

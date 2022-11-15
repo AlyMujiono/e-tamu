@@ -21,8 +21,8 @@
 			<h3>Admin</h3>
 			
 			<nav class="menu">
-				<a href="#a" class="menu-item">Daftar Kunjungan</a>
-				<a href="#b" class="menu-item is-active">Daftar User</a>
+				<a href="/admin/daftarkunjungan" class="menu-item">Daftar Kunjungan</a>
+				<a href="/admin/daftaruser" class="menu-item is-active">Daftar User</a>
 				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
 
@@ -61,7 +61,7 @@
         		</div>
         		<div class="bottom-container">
         		    <div class="button-container">
-        		        <button id="batal-btn"
+        		        <button on:click={() => {window.location.href = "/admin/daftaruser"}} id="batal-btn"
         		            >Batalkan</button
         		        >
         		    </div>

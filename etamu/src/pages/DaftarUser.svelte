@@ -1,10 +1,75 @@
 <script>
+  import axios from "axios";
+  import jsCookie from "js-cookie";
+  import { onMount } from "svelte";
   import TopNav from "../components/TopNav.svelte";
 	let navOpen = false;
-	
+	let token = jsCookie.get("token");
+	let listOfUser = [];
+	let nameSearch;
 	function handleNav() {
 		navOpen = !navOpen;		
 	}
+	async function getAllUsers() {
+		try {
+			const response = await axios.get(
+						`http://localhost:8000/api/v1/users`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					listOfUser = response.data.data;
+		} catch (error) {
+			listOfUser = [];
+		}
+	}
+	async function getUsersByName() {
+		if (nameSearch === '') {
+			getAllUsers();
+			return
+		}
+		try {
+			const response = await axios.get(
+						`http://localhost:8000/api/v1/users?name=${nameSearch}`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					listOfUser = response.data.data;
+		} catch (error) {
+			listOfUser = [];
+		}
+	}
+
+	onMount(async () => {
+		token = jsCookie.get("token");
+		console.log("Token: " + token);
+		if (!token) {
+			window.location.href = "/login";
+		}
+		try {
+			const response = await axios.get(
+						`http://localhost:8000/api/v1/users`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					listOfUser = response.data.data;
+		} catch (error) {
+			listOfUser = [];
+		}
+
+		
+	})
 </script>
 
 <TopNav/>
@@ -21,7 +86,7 @@
 			<h3>Admin</h3>
 			
 			<nav class="menu">
-				<a href="#a" class="menu-item">Daftar Kunjungan</a>
+				<a href="/admin/daftarkunjungan" class="menu-item">Daftar Kunjungan</a>
 				<a href="#b" class="menu-item is-active">Daftar User</a>
 				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
@@ -33,10 +98,10 @@
 		<main class="content">
 			<h1>Daftar User</h1>
 			<div class="row">
-				<button class="btn-newuser">Buat User</button>
+				<button on:click={() => {window.location.href = "/admin/buatuser"}} class="btn-newuser">Buat User</button>
             	<div class="input-container">
                     <label class="input-label" for="search">Search</label>
-                    <input type="text" name="search" id="search" class="input-field" placeholder="Masukkan Nama" >
+                    <input bind:value={nameSearch} on:change={getUsersByName} type="text" name="search" id="search" class="input-field" placeholder="Masukkan Nama" >
                 </div>
             </div>
             	<table>
@@ -48,9 +113,10 @@
 					<tr/>
 				</thead>
 				<tbody>
+				{#each listOfUser as user }
 					<tr>
-						<td>John</td>
-						<td>Asisten</td>
+						<td>{user.user_name}</td>
+						<td>{user.user_role}</td>
 						<td>
 							<div class="row-button">
 								<button class="btn-biru">Edit</button>
@@ -58,56 +124,7 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>John</td>
-						<td>Asisten</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>John</td>
-						<td>Asisten</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>John</td>
-						<td>Asisten</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>John</td>
-						<td>Asisten</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>John</td>
-						<td>Asisten</td>
-						<td>
-							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>					
+				{/each}
 				</tbody>
             </table>
 		</main>

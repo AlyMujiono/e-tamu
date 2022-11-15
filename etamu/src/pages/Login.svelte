@@ -6,6 +6,7 @@
 
     async function Login() {
         try {
+            console.log(`${userEmail}, ${userPassword}`);
             const response = await axios.post(
                 "http://localhost:8000/api/v1/login",
                 {
@@ -13,12 +14,15 @@
                     user_password: userPassword,
                 }
             );
+            console.log(response);
             const res = response.data;
             var expTime = new Date(new Date().getTime() + 60 * 60 * 1000);
 
             Cookies.set("token", res.data.token, {
                 expires: expTime,
             });
+
+            window.location.href = '/admin/daftarkunjungan';
         } catch (err) {
             console.log("Error : ", err);
         }
@@ -61,7 +65,7 @@
                                 />
                             </div>
                             <div class="button input-box">
-                                <input type="submit" value="Login" />
+                                <input on:click|preventDefault={Login} type="submit" value="Login" />
                             </div>
                         </div>
                     </form>
