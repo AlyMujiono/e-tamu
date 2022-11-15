@@ -124,7 +124,6 @@
 			<nav class="menu">
 				<a href="#a" class="menu-item is-active">Daftar Kunjungan</a>
 				<a href="daftaruser" class="menu-item">Daftar User</a>
-				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
 
 			<button class="logout-sidebar">Logout</button>
@@ -133,14 +132,17 @@
 
 		<main class="content">
 			<h1>Daftar Kunjungan</h1>
-			<div class="row">
-				<div class="input-container">
-            	    <label class="input-label" for="tanggal">Tanggal Awal</label>
-            	    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" bind:value={startDate} >
-            	</div>
-            	<div class="input-container">
-            	    <label class="input-label" for="tanggal">Tanggal Akhir</label>
-            	    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal Kunjungan" bind:value={endDate} >
+			<div class="spasi">
+				<button on:click={() => {window.location.href = "#a"}} class="btn-expdata">Export Data</button>
+				<div class="row">
+					<div class="input-container">
+            		    <label class="input-label" for="tanggal">Tanggal Awal</label>
+            		    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal 	Kunjungan" bind:value={startDate} >
+            		</div>
+            		<div class="input-container">
+            		    <label class="input-label" for="tanggal">Tanggal Akhir</label>
+            		    <input on:change={getAllVisitByDate} type="date" name="tanggal" id="tanggal" class="input-field" placeholder="Tanggal 	Kunjungan" bind:value={endDate} >
+            		</div>
             	</div>
             </div>
             	<table>
@@ -161,7 +163,6 @@
 							<td>
 								<div class="row-button">
 									<button class="btn-biru">Detail</button>
-									<button class="btn-biru">Edit</button>
 									<button class="btn-merah">Hapus</button>
 								</div>
 							</td>
@@ -345,7 +346,27 @@
 .content p {
 	color: #707793;
 }
-
+.spasi {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.btn-expdata {
+	width: 107px;
+	height: 40px;
+	
+	/* Blue */
+	background: #406AA8;
+	border-radius: 4px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	/* identical to box height, or 150% */
+	
+	/* White */
+	color: #FFFFFF;
+}
 .row {
 	display: flex;
     flex-direction: row;

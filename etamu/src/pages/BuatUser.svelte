@@ -23,7 +23,6 @@
 			<nav class="menu">
 				<a href="/admin/daftarkunjungan" class="menu-item">Daftar Kunjungan</a>
 				<a href="/admin/daftaruser" class="menu-item is-active">Daftar User</a>
-				<a href="#c" class="menu-item">Export Data</a>
 			</nav>
 
 			<button class="logout-sidebar">Logout</button>
@@ -42,11 +41,7 @@
             		    <div class="input-container">
             		        <label class="input-label" for="email">Email</label>
             		        <input type="text" name="email" id="email" class="input-field" placeholder="Email" >
-            		    </div>
-            		    <div class="input-container">
-            		        <label class="input-label" for="nohp">No Handphone</label>
-            		        <input type="text" name="nohp" id="nohp" class="input-field" placeholder="No Handphone" >
-            		    </div>            	    
+            		    </div>          	    
             		</div>
             		<div class="middle-container">
                 		<div class="input-container">
