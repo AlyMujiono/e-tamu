@@ -449,9 +449,6 @@
 </style> -->
 
 <style global>
-    :root {
-        color: black;
-    }
     #submit-button {
         background-color: #00b14c;
         color: white;

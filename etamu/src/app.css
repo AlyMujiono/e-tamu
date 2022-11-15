@@ -9,6 +9,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    color: black;
     /* height: 100%; */
 }
 /* :global(*) {
@@ -75,7 +76,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
      :root {
-        color: white;
+        color: black;
         background-color: #ffffff;
     }
     a:hover {

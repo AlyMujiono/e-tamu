@@ -77,7 +77,7 @@
                 <div class="right-container">
                     <div class="input-container">
                         <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
-                        <img src="{"http://localhost:8000/"+visit.vaccine_certificate}" alt="sertifikat vaksin">
+                        <img style="color: white;" src="{"http://localhost:8000/"+visit.vaccine_certificate}" alt="sertifikat vaksin">
                         
                     </div>
                     
@@ -121,7 +121,7 @@
     width: 334.51px;
     height: 42.42px;
     right: 5%;
-    top: 20px;
+    top: 10px;
     
     background: #00B14C;
     border-radius: 5px;
