@@ -70,7 +70,7 @@
                 <div class="middle-container">
                     <div class="input-container">
                         <label for="tertuju" class="input-label">Tertuju</label>
-                        <input type="text" name="tertuju" id="tertuju" class="input-field" value="Belum ada API" 
+                        <input type="text" name="tertuju" id="tertuju" class="input-field" value="{visit.user_visited_name}" 
                         readonly>
                     </div>
                 </div>
