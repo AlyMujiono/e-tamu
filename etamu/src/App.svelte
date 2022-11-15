@@ -20,10 +20,10 @@
   <Route path="registervisit" component={RegisterVisit} />
   <Route path="registervisit/verify" component={VerifyOtp} />
   <Route path="visitinfo" component={VisitInfo} />
-  <Route path="dashboardadmin" component={DashboardAdmin} />
-  <Route path="daftaruser" component={DaftarUser} />
-  <Route path="buatuser" component={BuatUser} />
-  <Route path="visitinfoadmin" component={VisitInfoAdmin} />
+  <Route path="admin/daftarkunjungan" component={DashboardAdmin} />
+  <Route path="admin/daftaruser" component={DaftarUser} />
+  <Route path="admin/buatuser" component={BuatUser} />
+  <Route path="admin/visitinfo" component={VisitInfoAdmin} />
   <Route path="otpemail" component={EmailOtp} />
   <Route path="email_idvisit" component={EmailIdVisit} />
   <Route path="email_notif" component={EmailNotifVisit} />
