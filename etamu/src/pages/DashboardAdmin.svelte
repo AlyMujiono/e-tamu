@@ -100,6 +100,9 @@
 				});
 				listOfVisit = listOfVisit
 			} catch (error) {
+				if (error.response.status === 401) {
+					window.location.href = "/login";
+				}
 				listOfVisit = [];
 			}
 			
