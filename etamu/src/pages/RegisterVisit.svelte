@@ -521,16 +521,7 @@
         display: flex;
         flex-direction: column;
         margin: 0.5vh 1vh;
-        /* color : */
-        /* --margin : 0 10vh; */
-        /* --indicatorWidth : 100%; */
         --itemColor : black;
-        /* --itemHoverColor : black;
-        --inputColor : black;
-        --itemIsActiveColor : black;
-        --indicatorColor : black;
-        --placeholderColor : black;
-        --spinnerColor : black; */
         color : black;
     }
     .input-field {
