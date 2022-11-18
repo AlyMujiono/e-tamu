@@ -518,9 +518,8 @@
         display: flex;
         flex-direction: column;
         margin: 0.5vh 1vh;
-        /* color : */
-        /* --margin : 0 10vh; */
-        /* --indicatorWidth : 100%; */
+        --itemColor : black;
+        color : black;
     }
     .input-field {
         padding: 1.5vh;
