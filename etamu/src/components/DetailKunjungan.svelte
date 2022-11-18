@@ -1,79 +1,71 @@
 <script>
-	import Select from 'svelte-select';
-    import axios from "axios";
+	import axios from "axios";
     import jsCookie from "js-cookie";
-    let token = jsCookie.get("token");
-    let user_name, user_email, user_password, user_role;
 
-        
-    async function createUser(user) {
-		try {
-			const response = await axios.post(
-						`http://localhost:8000/api/v1/user`, 
-                        user,
-						{
-							headers: {
-								"Authorization": `Bearer ${token}`
-							}
-						}
-					);
-			
-					return response.data.data;
-		} catch (error) {
-			return null;
-		}
-	}
-	const items = ['Staff', 'Admin', 'Security'];
+	export let selectedID;
+	console.log(selectedID);
+
+    let token = jsCookie.get("token");
+    
 </script>
 
-<h1>Buat User</h1>
+<h1>Edit User</h1>
 <div class="content-field">
 	<div class="form-field">
 		<div class="left-container">
-		    <div class="input-container">
-		        <label class="input-label" for="nama-lengkap">Nama Lengkap</label>
-		        <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" placeholder="Nama Lengkap" bind:value={user_name}>
-		    </div>
-		    <div class="input-container">
-		        <label class="input-label" for="email">Email</label>
-		        <input type="text" name="email" id="email" class="input-field" placeholder="Email" bind:value={user_email}>
-		    </div>          	    
-		</div>
-		<div class="middle-container">
-    		<div class="input-container">
-		        <label class="input-label" for="role">Jabatan / Role</label>
-		        <Select {items}></Select>
-		    </div>
-		    <div class="input-container">
-		        <label class="input-label" for="pswd">Password</label>
-		        <input type="text" name="pswd" id="pswd" class="input-field" placeholder="Password" bind:value={user_password}>
-		    </div>
-    	</div>                	
+                    <div class="input-container">
+                        <label class="input-label" for="nama-lengkap">Nama Lengkap</label>
+                        <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" value="{selectedID.guest_name}"     
+                        readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="email">Email</label>
+                        <input type="text" name="email" id="email" class="input-field" value="{selectedID.guest_email}" readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="tujaun">Tujuan</label>
+                        <input type="text" name="tujuan" id="tujuan" class="input-field" value="{selectedID.visit_intention}" readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="jumlah-pengunjung">Jumlah Pengunjung</label>
+                        <input type="number" name="jumlah pengunjung" id="jumlah-pengunjung" class="input-field" placeholder="{selectedID.guest_count}" readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="transportasi">Transportasi</label>
+                        <input type="text" name="transportasi" id="transportasi" class="input-field" value="{selectedID.transportation}"
+                        readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="tanggal">Tanggal Kunjungan</label>
+                        <input type="text" name="tanggal" id="tanggal" class="input-field" value="{selectedID.visit_date}" 
+                        readonly>
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="waktu">Waktu Kunjungan</label>
+                        <input type="text" name="waktu" id="waktu" class="input-field" value="{selectedID.visit_hour}" 
+                        readonly>
+                    </div>
+                </div>
+                <div class="middle-container">
+                    <div class="input-container">
+                        <label for="tertuju" class="input-label">Tertuju</label>
+                        <input type="text" name="tertuju" id="tertuju" class="input-field" value="Belum ada API" 
+                        readonly>
+                    </div>
+                </div>
+                <div class="right-container">
+                    <div class="input-container">
+                        <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
+                        <img style="color: white;" src="{"http://localhost:8000/"+selectedID.vaccine_certificate}" alt="sertifikat vaksin">
+                        
+                    </div>
+                    
+                </div>                	
 	</div>
 	<div class="bottom-container">
 	    <div class="button-container">
 	        <button on:click={() => {window.location.href = "/admin/daftaruser"}} id="batal-btn"
-	            >Batalkan</button
-	        >
-	    </div>
-	    <div class="button-container">
-	        <button on:click={async () => {
-                try {
-                    let user = {
-                        user_name,
-                        user_email,
-                        user_role,
-                        user_password
-                    }
-                    let createdUser = await createUser(user);
-                    console.log(createdUser);
-                    
-                    window.location.href = "/admin/daftaruser"
-                } catch (error) {
-                    console.log(error);
-                }
-            }} id="konfirmasi-btn"
-	            >Create</button
+	            >Kembali</button
 	        >
 	    </div>
 	</div>
@@ -230,13 +222,24 @@
 	padding: 2rem;
 }
 
+.content h1 {
+	width: 252px;
+	height: 44px;
+	left: 252px;
+	top: 91px;
+	
+	font-style: normal;
+	font-weight: 600;
+	font-size: 36px;
+	line-height: 44px;
+
+	
+	color: #FFFFFF;
+}
+
 .content p {
 	color: #707793;
 } */
-
-h1 {
-	color: white;
-}
 
 .content-field {
 	width: 100%;
@@ -260,21 +263,20 @@ h1 {
 }
 .left-container {
     display: flex;
-    width: 50vh;
     height: 100%;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-
+    /* padding-top: 3vh; */
 }
-/* .right-container {
+.right-container {
     display: flex;
-    height: 100%;
+    height: auto;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-
-} */
+    /* padding-top: 3vh; */
+}
 .input-container {
     display: flex;
     flex-direction: column;

@@ -156,7 +156,7 @@
 					<tr>
 						<th>Nama</th>
 						<th>Jabatan</th>
-						<th>Aksi</th>
+						<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
 					<tr/>
 				</thead>
 				<tbody>
@@ -291,6 +291,7 @@
 	/* identical to box height, or 133% */
 	
 	text-align: center;
+	color: white;
 }
 
 .sidebar .menu {
@@ -417,6 +418,7 @@ table {
 table td, table th {
 	border: 1px solid #37393A;
 	padding: 10px 10px;
+	color: white;
 }
 table tbody td {
 	font-size: 13px;

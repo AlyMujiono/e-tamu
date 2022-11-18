@@ -3,14 +3,33 @@
 	import Cookie from "js-cookie";
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
+	import DetailKunjungan from "../components/DetailKunjungan.svelte";
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
 	let endDate;
 	let token = Cookie.get('token');
+	let selectedID;
+	let state;
 	
 	function handleNav() {
 		navOpen = !navOpen;		
+	}
+	async function getVisitByID(id) {
+		try {
+			const response = await axios.get(
+						`http://localhost:8000/api/v1/visits/${id}`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					return response.data.data;
+		} catch (error) {
+			return null;
+		}
 	}
 	async function getAllVisit() {
 		try {
@@ -109,6 +128,7 @@
 			
 		}
 	)
+
 </script>
 
 <TopNav/>
@@ -134,6 +154,10 @@
 		</aside>
 
 		<main class="content">
+			{#if state === 'detail'}
+			<DetailKunjungan selectedID={selectedID} />
+			
+			{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
 				<button on:click={() => {window.location.href = "#a"}} class="btn-expdata">Export Data</button>
@@ -154,7 +178,7 @@
 						<th>Nama Tamu</th>
 						<th>Yang dituju</th>
 						<th>Waktu</th>
-						<th>Aksi</th>
+						<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
 					<tr/>
 				</thead>
 				<tbody>
@@ -165,7 +189,10 @@
 							<td>{visit.visit_date}</td>
 							<td>
 								<div class="row-button">
-									<button class="btn-biru">Detail</button>
+									<button on:click|preventDefault={async () => {
+									selectedID = await getVisitByID(visit.visited_id);/*masih ngaco*/
+									state = 'detail';
+								}} class="btn-biru">Detail</button>
 									<button class="btn-merah">Hapus</button>
 								</div>
 							</td>
@@ -173,6 +200,7 @@
 					{/each}
 				</tbody>
             </table>
+            {/if}
 		</main>
 	</div>
 
@@ -282,6 +310,7 @@
 	/* identical to box height, or 133% */
 	
 	text-align: center;
+	color: white;
 }
 
 .sidebar .menu {
@@ -413,6 +442,7 @@ table {
 table td, table th {
 	border: 1px solid #37393A;
 	padding: 10px 10px;
+	color: white;
 }
 table tbody td {
 	font-size: 13px;

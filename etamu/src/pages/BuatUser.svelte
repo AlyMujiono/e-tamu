@@ -1,10 +1,12 @@
 <script>
+	import Select from 'svelte-select';
   import TopNav from "../components/TopNav.svelte";
 	let navOpen = false;
 	
 	function handleNav() {
 		navOpen = !navOpen;		
 	}
+	const items = ['Staff', 'Admin', 'Security'];
 </script>
 
 <TopNav/>
@@ -46,7 +48,7 @@
             		<div class="middle-container">
                 		<div class="input-container">
             		        <label class="input-label" for="role">Jabatan / Role</label>
-            		        <input type="text" name="role" id="role" class="input-field" placeholder="Jabatan / Role" >
+            		        <Select {items}></Select>
             		    </div>
             		    <div class="input-container">
             		        <label class="input-label" for="pswd">Password</label>
