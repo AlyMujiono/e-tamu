@@ -18,9 +18,7 @@
             const res = response.data;
             var expTime = new Date(new Date().getTime() + 60 * 60 * 1000);
 
-            Cookies.set("token", res.data.token, {
-                expires: expTime,
-            });
+            Cookies.set("token", res.data.token);
 
             window.location.href = '/admin/daftarkunjungan';
         } catch (err) {
