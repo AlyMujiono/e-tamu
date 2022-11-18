@@ -12,6 +12,10 @@
   import EmailOtp from "./pages/EmailOTP.svelte";
   import EmailIdVisit from "./pages/EmailIdVisit.svelte";
   import EmailNotifVisit from "./pages/EmailNotifVisit.svelte";
+  import DashboardSecurity from "./pages/DashboardSecurity.svelte";
+  import VisitInfoSecurity from "./pages/VisitInfoSecurity.svelte";
+  import DashboardUser from "./pages/DashboardUser.svelte";
+  import VisitInfoUser from "./pages/VisitInfoUser.svelte";
 </script>
 
 <Router>
@@ -27,4 +31,8 @@
   <Route path="otpemail" component={EmailOtp} />
   <Route path="email_idvisit" component={EmailIdVisit} />
   <Route path="email_notif" component={EmailNotifVisit} />
+  <Route path="security/daftarkunjungan" component={DashboardSecurity} />
+  <Route path="security/visitinfo" component={VisitInfoSecurity} />
+  <Route path="user/daftarkunjungan" component={DashboardUser} />
+  <Route path="user/visitinfo" component={VisitInfoUser} />
 </Router>
