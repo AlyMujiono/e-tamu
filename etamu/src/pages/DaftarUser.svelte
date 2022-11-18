@@ -2,7 +2,11 @@
   import axios from "axios";
   import jsCookie from "js-cookie";
   import { onMount } from "svelte";
+  import BuatUserContent from "../components/BuatUserContent.svelte";
+  import EditUserContent from "../components/EditUserContent.svelte";
   import TopNav from "../components/TopNav.svelte";
+	let selectedUser;
+	let state;
 	let navOpen = false;
 	let token = jsCookie.get("token");
 	let listOfUser = [];
@@ -10,6 +14,40 @@
 	function handleNav() {
 		navOpen = !navOpen;		
 	}
+	async function getUserByID(id) {
+		try {
+			const response = await axios.get(
+						`http://localhost:8000/api/v1/user/${id}`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					return response.data.data;
+		} catch (error) {
+			return null;
+		}
+	}
+
+	async function deleteUserByID(id) {
+		try {
+			const response = await axios.delete(
+						`http://localhost:8000/api/v1/users/${id}`, 
+						{
+							headers: {
+								"Authorization": `Bearer ${token}`
+							}
+						}
+					);
+			
+					return response.data.data;
+		} catch (error) {
+			return null;
+		}
+	}
+
 	async function getAllUsers() {
 		try {
 			const response = await axios.get(
@@ -96,11 +134,18 @@
 			<button class="logout-sidebar">Logout</button>
 
 		</aside>
-
+		
 		<main class="content">
+			{#if state === 'edit'}
+			<EditUserContent selectedUser={selectedUser} />
+			
+			{:else if state === 'create'}
+			<BuatUserContent/>
+			
+			{:else}
 			<h1>Daftar User</h1>
 			<div class="row">
-				<button on:click={() => {window.location.href = "/admin/buatuser"}} class="btn-newuser">Buat User</button>
+				<button on:click={() => {state = 'create'}} class="btn-newuser">Buat User</button>
             	<div class="input-container">
                     <label class="input-label" for="search">Search</label>
                     <input bind:value={nameSearch} on:change={getUsersByName} type="text" name="search" id="search" class="input-field" placeholder="Masukkan Nama" >
@@ -121,14 +166,22 @@
 						<td>{user.user_role}</td>
 						<td>
 							<div class="row-button">
-								<button class="btn-biru">Edit</button>
-								<button class="btn-merah">Hapus</button>
+								<button on:click|preventDefault={async () => {
+									selectedUser = await getUserByID(user.user_id);
+									state = 'edit';
+								}} class="btn-biru">Edit</button>
+								<button on:click|preventDefault={async () => {
+									let deletedUser = await deleteUserByID(user.user_id); 
+									getAllUsers();
+								}} class="btn-merah">Hapus</button>
 							</div>
 						</td>
 					</tr>
 				{/each}
 				</tbody>
             </table>
+			{/if}
+			
 		</main>
 	</div>
 
