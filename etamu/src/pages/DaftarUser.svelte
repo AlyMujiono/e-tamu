@@ -151,35 +151,37 @@
                     <input bind:value={nameSearch} on:change={getUsersByName} type="text" name="search" id="search" class="input-field" placeholder="Masukkan Nama" >
                 </div>
             </div>
+            <div id="scrollingBlock">
             	<table>
             		<thead>
-					<tr>
-						<th>Nama</th>
-						<th>Jabatan</th>
-						<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
-					<tr/>
-				</thead>
-				<tbody>
-				{#each listOfUser as user }
-					<tr>
-						<td>{user.user_name}</td>
-						<td>{user.user_role}</td>
-						<td>
-							<div class="row-button">
-								<button on:click|preventDefault={async () => {
-									selectedUser = await getUserByID(user.user_id);
-									state = 'edit';
-								}} class="btn-biru">Edit</button>
-								<button on:click|preventDefault={async () => {
-									let deletedUser = await deleteUserByID(user.user_id); 
-									getAllUsers();
-								}} class="btn-merah">Hapus</button>
-							</div>
-						</td>
-					</tr>
-				{/each}
-				</tbody>
-            </table>
+						<tr>
+							<th>Nama</th>
+							<th>Jabatan</th>
+							<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
+						<tr/>
+					</thead>
+					<tbody>
+					{#each listOfUser as user }
+						<tr>
+							<td>{user.user_name}</td>
+							<td>{user.user_role}</td>
+							<td>
+								<div class="row-button">
+									<button on:click|preventDefault={async () => {
+										selectedUser = await getUserByID(user.user_id);
+										state = 'edit';
+									}} class="btn-biru">Edit</button>
+									<button on:click|preventDefault={async () => {
+										let deletedUser = await deleteUserByID(user.user_id); 
+										getAllUsers();
+									}} class="btn-merah">Hapus</button>
+								</div>
+							</td>
+						</tr>
+					{/each}
+					</tbody>
+            	</table>
+            </div>
 			{/if}
 			
 		</main>
@@ -408,6 +410,13 @@ input[type="text"]:focus {
     border: 2px solid #1abc9d;
 }
 
+#scrollingBlock {
+	height: 440px;
+	border: 2px solid black;
+	/*box-shadow: 10px 5px 5px red;*/
+	overflow-y: scroll;
+}
+
 table {
 	border: 1px solid #37393A;
 	background-color: #37393A;;
@@ -428,7 +437,11 @@ table tr:nth-child(even) {
 }
 table thead {
 	background: #37393A;
-	border-bottom: 2px solid #444444;
+	border-bottom: 2px solid #444444;	
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
 }
 table thead th {
 	font-size: 15px;

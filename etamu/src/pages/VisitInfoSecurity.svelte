@@ -297,7 +297,7 @@ input {
 }
 
 #btn-hijau {
-    width: 200px;
+    width: 300px;
     height: 36.9px;
     
     background: #00B14C;

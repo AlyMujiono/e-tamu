@@ -94,9 +94,9 @@
 	onMount(
 		async () => {
 
-			if (token === '') {
+			/* if (token === '') {
 				window.location.href = "/login";
-			}
+			} */
 
 			try {
 				const response = await axios.get(
@@ -127,7 +127,7 @@
 			
 			
 		}
-	)
+	) 
 
 </script>
 
@@ -167,34 +167,36 @@
             		</div>
             	</div>
             </div>
+            <div id="scrollingBlock">
             	<table>
             		<thead>
-					<tr>
-						<th>Nama Tamu</th>
-						<th>Yang dituju</th>
-						<th>Waktu</th>
-						<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
-					<tr/>
-				</thead>
-				<tbody>
-					{#each listOfVisit as visit}
 						<tr>
-							<td>{visit.guest_name}</td>
-							<td>{visit.user_visited_name}</td>
-							<td>{visit.visit_date}</td>
-							<td>
-								<div class="row-button">
-									<button on:click|preventDefault={async () => {
-										selectedID = await getVisitByID(visit.visited_id);/*masih ngaco*/
-										state = 'detail';
-									}} class="btn-biru">Detail</button>
-									<button class="btn-hijau">Selesai</button>
-								</div>
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-            </table>
+							<th>Nama Tamu</th>
+							<th>Yang dituju</th>
+							<th>Waktu</th>
+							<th style="display: flex; justify-content: center; border: 0px;">Aksi</th>
+						<tr/>
+					</thead>
+					<tbody>
+						{#each listOfVisit as visit}
+							<tr>
+								<td>{visit.guest_name}</td>
+								<td>{visit.user_visited_name}</td>
+								<td>{visit.visit_date}</td>
+								<td>
+									<div class="row-button">
+										<button on:click|preventDefault={async () => {
+											selectedID = await getVisitByID(visit.visited_id);/*masih ngaco*/
+											state = 'detail';
+										}} class="btn-biru">Detail</button>
+										<button class="btn-hijau">Selesai</button>
+									</div>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+            	</table>
+            </div>
             {/if}
 		</main>
 	</div>
@@ -427,6 +429,13 @@ input[type="date"]:focus {
     border: 2px solid #1abc9d;
 }
 
+#scrollingBlock {
+	height: 440px;
+	border: 2px solid black;
+	/*box-shadow: 10px 5px 5px red;*/
+	overflow-y: scroll;
+}
+
 table {
 	border: 1px solid #37393A;
 	background-color: #37393A;;
@@ -447,7 +456,11 @@ table tr:nth-child(even) {
 }
 table thead {
 	background: #37393A;
-	border-bottom: 2px solid #444444;
+	border-bottom: 2px solid #444444;	
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
 }
 table thead th {
 	font-size: 15px;

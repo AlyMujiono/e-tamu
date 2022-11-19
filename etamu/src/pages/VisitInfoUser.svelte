@@ -291,20 +291,7 @@ input {
     color: #FFFFFF;
 }
 
-/*#btn-hijau {
-    width: 200px;
-    height: 36.9px;
-    
-    background: #00B14C;
-    border-radius: 5px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 0px;
-    /* or 150% */
-    
-    color: #FFFFFF;
-}*/
+
 h2 {
     position: absolute;
     width: 60%;
