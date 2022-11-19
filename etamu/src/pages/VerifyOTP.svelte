@@ -1,6 +1,10 @@
 <script>
     import axios from 'axios';
     import Cookies from 'js-cookie';
+    import IconQ from "../assets/img/Icon-Q.png";
+    import IconX from "../assets/img/Icon-X.png";
+    import IconV from "../assets/img/Icon-V.png";
+    import TopNav from "../components/TopNav.svelte";
     let success = null;
     let OTP = '';
 
@@ -22,72 +26,83 @@
     }
 </script>
 
+<TopNav title="Konfirmasi Kode OTP" />
 <div class="container">
     {#if success === true}
     <div class="form-container">
-        <h1>BERHASIL</h1>
+        <img class="img" src={IconV} alt="Berhasil" />
+        <h3>BERHASIL</h3>
+        <p>Kode OTP berhasil di konfirmasi.</p>
+        <div class="button-container">
+            <button on:click={() => {window.location.href = "/visitinfo"}}
+            >OK</button>
+        </div>
     </div>
     {:else if success === false}
     <div class="form-container">
-        <h1>GAGAL</h1>
+        <img class="img" src={IconX} alt="Gagal" />
+        <h3>GAGAL</h3>
+        <p>Kode OTP salah.</p>
+        <div class="button-container">
+            <button on:click={() => {window.location.href = "/registervisit/verify"}}
+            >Coba Lagi</button>
+        </div>
     </div>
     {:else}   
         <div class="form-container">
-            <fieldset class='number-code'>
-                <legend>Kode OTP</legend>
-                    <div class="input-container">
-                        <input id="opt_token" type="text" bind:value={OTP}>    
-                    </div>
-            </fieldset>
+            <img class="img" src={IconQ} alt="Isi OTP" />
+            <h3>Masukan Kode OTP</h3>
+            <p>Cek email anda untuk kode OTP.</p>
+            <div class="input-container">
+                <input id="opt_token" type="text" bind:value={OTP}>    
+            </div>
             <div class="button-container">
                 <button on:click={SubmitOTP} disabled={OTP == ''}>Verify</button>
             </div>
+            <p>Tidak menerima kode? <a> Kirim ulang!</a></p>
         </div>
     {/if}
 </div>
 
 <style>
-    .form-container {
-        width: 500px;
-        background: #edeff1;
-        margin: 0px auto;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-    }
-    fieldset {
-        display: block;
-        margin-inline-start: 2px;
-        margin-inline-end: 2px;
-        padding-block-start: 0.35em;
-        padding-inline-start: 0.75em;
-        padding-inline-end: 0.75em;
-        padding-block-end: 0.625em;
-        min-inline-size: min-content;
-        border-width: 2px;
-        border-style: groove;
-        border-color: rgb(192, 192, 192);
-        border-image: initial;
+    .container {
+        box-sizing: border-box;
+
+        /* Auto layout */
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        
+        width: 55%;
+        height: 75%;
+        margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
-        width: 80%;
+        
+        /* Black */
+        
+        background: #1A1A1A;
+        border: 1px solid #FFFFFF;
+        /* Shadow */
+        
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25), 0px 12px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
     }
-    legend {
-        display: block;
-        padding-inline-start: 2px;
-        padding-inline-end: 2px;
-        border-width: initial;
-        border-style: none;
-        border-color: initial;
-        border-image: initial;
-        font-weight: bold;
+    .form-container {
+        margin: auto;
+    }
+    h3 {
+        color: white;
+    }
+    p {
+        color: white;
     }
     .input-container {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 260px;
         margin-left: auto;
         margin-right: auto;
         gap: 5px;
@@ -114,24 +129,34 @@
         border: 2px solid #1abc9d;
     }
     button {
-        display: block;
-        background: #1abc9d;
-        width: 314px;
-        padding: 12px;
-        cursor: pointer;
-        color: #fff;
-        border: 0px;
-        margin: auto;
-        margin-top: 20px;
-        border-radius: 5px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        font-size: 17px;
-        transition: all 0.3s ease;
+        box-sizing: border-box;
+
+        /* Auto layout */        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 16px;
+        gap: 8px;
+        
+        width: 260px;
+        height: 40px;
+        
+        /* White */        
+        border: 1px solid #FFFFFF;
+        border-radius: 4px;
+        
+        /* Inside auto layout */        
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        background:  #1A1A1A;
+        color: white;
     }
 
     button:hover {
-        background: #09cca6;
+        background: #FFFFFF;
+        color: black;
     }
 
 </style>
