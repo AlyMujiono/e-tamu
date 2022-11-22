@@ -2,61 +2,61 @@
 	import axios from "axios";
     import jsCookie from "js-cookie";
 
-	export let selectedID;
-	console.log(selectedID);
+	export let selectedUser;
+	console.log(selectedUser);
 
     let token = jsCookie.get("token");
     
 </script>
 
-<h1>Edit User</h1>
+<h1>Detail Kunjungan</h1>
 <div class="content-field">
 	<div class="form-field">
 		<div class="left-container">
                     <div class="input-container">
                         <label class="input-label" for="nama-lengkap">Nama Lengkap</label>
-                        <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" value="{selectedID.guest_name}"     
+                        <input type="text" name="nama-lengkap" id="nama-lengkap" class="input-field" value="{selectedUser.guest_name}"     
                         readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="email">Email</label>
-                        <input type="text" name="email" id="email" class="input-field" value="{selectedID.guest_email}" readonly>
+                        <input type="text" name="email" id="email" class="input-field" value="{selectedUser.guest_email}" readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="tujaun">Tujuan</label>
-                        <input type="text" name="tujuan" id="tujuan" class="input-field" value="{selectedID.visit_intention}" readonly>
+                        <input type="text" name="tujuan" id="tujuan" class="input-field" value="{selectedUser.visit_intention}" readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="jumlah-pengunjung">Jumlah Pengunjung</label>
-                        <input type="number" name="jumlah pengunjung" id="jumlah-pengunjung" class="input-field" placeholder="{selectedID.guest_count}" readonly>
+                        <input type="number" name="jumlah pengunjung" id="jumlah-pengunjung" class="input-field" placeholder="{selectedUser.guest_count}" readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="transportasi">Transportasi</label>
-                        <input type="text" name="transportasi" id="transportasi" class="input-field" value="{selectedID.transportation}"
+                        <input type="text" name="transportasi" id="transportasi" class="input-field" value="{selectedUser.transportation}"
                         readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="tanggal">Tanggal Kunjungan</label>
-                        <input type="text" name="tanggal" id="tanggal" class="input-field" value="{selectedID.visit_date}" 
+                        <input type="text" name="tanggal" id="tanggal" class="input-field" value="{selectedUser.visit_date}" 
                         readonly>
                     </div>
                     <div class="input-container">
                         <label class="input-label" for="waktu">Waktu Kunjungan</label>
-                        <input type="text" name="waktu" id="waktu" class="input-field" value="{selectedID.visit_hour}" 
+                        <input type="text" name="waktu" id="waktu" class="input-field" value="{selectedUser.visit_hour}" 
                         readonly>
                     </div>
                 </div>
                 <div class="middle-container">
                     <div class="input-container">
                         <label for="tertuju" class="input-label">Tertuju</label>
-                        <input type="text" name="tertuju" id="tertuju" class="input-field" value="Belum ada API" 
+                        <input type="text" name="tertuju" id="tertuju" class="input-field" value="{selectedUser.user_visited_name}" 
                         readonly>
                     </div>
                 </div>
                 <div class="right-container">
                     <div class="input-container">
                         <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
-                        <img style="color: white;" src="{"http://localhost:8000/"+selectedID.vaccine_certificate}" alt="sertifikat vaksin">
+                        <img style="color: white;" src="{"http://localhost:8000/"+selectedUser.vaccine_certificate}" alt="sertifikat vaksin">
                         
                     </div>
                     
