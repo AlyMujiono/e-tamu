@@ -9,8 +9,9 @@
 	let startDate;
 	let endDate;
 	let token = Cookie.get("token");
-	let selectedID;
+	let selectedUser;
 	let state;
+	let backUri = "/user/daftarkunjungan";
 
 	function handleNav() {
 		navOpen = !navOpen;
@@ -26,7 +27,13 @@
 				}
 			);
 
-			return response.data.data;
+			let result = response.data.data;
+			const res = await axios.get(
+				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
+			);
+			let user_visited_name = res.data.data.user_name;
+			result = {...result, user_visited_name};
+			return result;
 		} catch (error) {
 			return null;
 		}
@@ -143,7 +150,7 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjungan {selectedID} />
+			<DetailKunjungan selectedUser={selectedUser} backUri={backUri}/>
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
@@ -201,9 +208,9 @@
 									<div class="row-button">
 										<button
 											on:click|preventDefault={async () => {
-												selectedID = await getVisitByID(
-													visit.visited_id
-												); /*masih ngaco*/
+												selectedUser = await getVisitByID(
+													visit.visit_id
+												);
 												state = "detail";
 											}}
 											class="btn-biru">Detail</button

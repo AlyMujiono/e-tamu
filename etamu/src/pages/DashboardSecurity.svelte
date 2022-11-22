@@ -9,8 +9,9 @@
 	let startDate;
 	let endDate;
 	let token = Cookie.get("token");
-	let selectedID;
+	let selectedUser;
 	let state;
+	let backUri = "/security/daftarkunjungan";
 
 	function handleNav() {
 		navOpen = !navOpen;
@@ -26,7 +27,13 @@
 				}
 			);
 
-			return response.data.data;
+			let result = response.data.data;
+			const res = await axios.get(
+				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
+			);
+			let user_visited_name = res.data.data.user_name;
+			result = {...result, user_visited_name};
+			return result;
 		} catch (error) {
 			return null;
 		}
@@ -91,6 +98,56 @@
 		}
 	}
 
+	async function generateSpreadsheetByDate() {
+		if (!startDate || !endDate) {
+			// getAllVisit();
+			return;
+		}
+
+		try {
+			const response = await axios.get(
+				`http://localhost:8000/api/v1/visits/generate`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+					params: { start_date: startDate, end_date: endDate },
+				}
+			);
+			let responseBody = response.data.data;
+			let csvLink = responseBody.csv_url;
+
+			if (csvLink) {
+				axios({
+			    url: `http://localhost:8000/${csvLink}`, //your url
+			    method: 'GET',
+			    responseType: 'blob', // important
+				}).then((response) => {
+				    const url = window.URL.createObjectURL(new Blob([response.data]));
+				    const link = document.createElement('a');
+				    link.href = url;
+				    link.setAttribute('download', 'visits.csv'); //or any other extension
+				    document.body.appendChild(link);
+				    link.click();
+				});
+
+			}
+			// listOfVisit.forEach(async (visit, index) => {
+			// 	const res = await axios.get(
+			// 		`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+			// 	);
+
+			// 	let user_visited_name = res.data.data.user_name;
+			// 	listOfVisit[index] = { ...visit, user_visited_name };
+			// });
+			// console.log(listOfVisit);
+			// listOfVisit = listOfVisit;
+		} catch (error) {
+			console.log(error);
+		}
+
+	}
+
 	onMount(async () => {
 		/* if (token === '') {
 				window.location.href = "/login";
@@ -143,14 +200,12 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjungan {selectedID} />
+			<DetailKunjungan selectedUser={selectedUser} backUri={backUri}/>
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
 				<button
-					on:click={() => {
-						window.location.href = "#a";
-					}}
+					on:click={generateSpreadsheetByDate}
 					class="btn-expdata">Export Data</button
 				>
 				<div class="row">
@@ -207,9 +262,9 @@
 									<div class="row-button">
 										<button
 											on:click|preventDefault={async () => {
-												selectedID = await getVisitByID(
-													visit.visited_id
-												); /*masih ngaco*/
+												selectedUser = await getVisitByID(
+													visit.visit_id
+												);
 												state = "detail";
 											}}
 											class="btn-biru">Detail</button

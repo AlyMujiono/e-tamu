@@ -3,6 +3,7 @@
     import jsCookie from "js-cookie";
 
 	export let selectedUser;
+	export let backUri;
 	console.log(selectedUser);
 
     let token = jsCookie.get("token");
@@ -63,7 +64,7 @@
                 </div>  
     <div class="bottom-container">
 	    <div class="button-container">
-	        <button on:click={() => {window.location.href = "/admin/daftarkunjungan"}} id="batal-btn"
+	        <button on:click={() => {window.location.href = backUri}} id="batal-btn"
 	            >Kembali</button
 	        >
 	    </div>

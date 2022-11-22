@@ -11,6 +11,7 @@
 	let token = Cookie.get("token");
 	let selectedUser;
 	let state;
+	let backUri = "/admin/daftarkunjungan";
 
 	function handleNav() {
 		navOpen = !navOpen;
@@ -225,7 +226,7 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjungan selectedUser={selectedUser} />
+			<DetailKunjungan selectedUser={selectedUser} backUri={backUri}/>
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
