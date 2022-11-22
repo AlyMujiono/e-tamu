@@ -60,35 +60,22 @@
                         
                     </div>
                     
-                </div>                	
-	</div>
-	<div class="bottom-container">
+                </div>  
+    <div class="bottom-container">
 	    <div class="button-container">
-	        <button on:click={() => {window.location.href = "/admin/daftaruser"}} id="batal-btn"
+	        <button on:click={() => {window.location.href = "/admin/daftarkunjungan"}} id="batal-btn"
 	            >Kembali</button
 	        >
 	    </div>
 	</div>
+	</div>
+	
 </div>
 <style>
-/* .logout-header {
-    position: absolute;
-    right: 5%;
-    top: 20px;
-    
-    width: 85px;
-	height: 40px;
-	
-	background: #406AA8;
-	border-radius: 4px;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;	
-	
-	color: #FFFFFF;
- } */
-
+h1 {
+	color: white;
+	font-size: 36px;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -96,126 +83,6 @@
 	font-family: sans-serif;
 }
 
-/* .app {
-	display: flex;
-	min-height: 90vh;
-}
-
-.menu-toggle {
-	display: none;
-	position: fixed;
-	top: 2rem;
-	right: 2rem;
-	width: 60px;
-	height: 60px;
-	border-radius: 99px;
-	background-color: #2e3047;
-	cursor: pointer;
-}
-
-.hamburger {
-	position: relative;
-	top: calc(50% - 2px);
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 32px;
-}
-
-.hamburger > span,
-.hamburger > span::before,
-.hamburger > span::after {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  border-radius: 99px;
-  background-color: #FFF;
-  transition-duration: .25s;
-}
-
-.hamburger > span::before {
-  content: '';
-  top: -8px;
-}
-.hamburger > span::after {
-  content: '';
-  top: 8px;
-}
-.menu-toggle.is-active .hamburger > span {
-  transform: rotate(45deg);
-}
-.menu-toggle.is-active .hamburger > span::before {
-  top: 0;
-  transform: rotate(0deg);
-}
-.menu-toggle.is-active .hamburger > span::after {
-  top: 0;
-  transform: rotate(90deg);
-}
-.profile {
-	width: 100px;
-	height: 100px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	border-radius: 50px;
-}
-.sidebar {
-	flex: 1 1 0;
-	max-width: 230px;
-	padding: 2rem 1rem;
-	background-color: #1A1A1A;;
-}
-
-.sidebar h3 {
-	font-style: normal;
-	font-weight: 600;
-	font-size: 24px;
-	line-height: 32px;
-	/* identical to box height, or 133% */
-	
-	/* text-align: center; */
-/* } */
-
-/* .sidebar .menu {
-	margin: 0 -1rem;
-} */
-
-/* .sidebar .menu .menu-item {
-	display: block;
-	padding: 1em;
-	color: #FFF;
-	text-decoration: none;
-	transition: 0.2s linear;
-} */
-
-/* .sidebar .menu .menu-item:hover,
-.sidebar .menu .menu-item.is-active {
-	background: #406AA8;
-	border-radius: 4px;
-} */
-
-/* .sidebar .menu .menu-item:hover {
-	background: #406AA8;
-	border-radius: 4px;
-} */
-
-/* .logout-sidebar { 
-    width: 85px;
-	height: 40px;
-	
-
-	background: #406AA8;
-	border-radius: 4px;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;	
-	
-
-	color: #FFFFFF;
-
-	visibility: hidden;
- } */
 
 /* .content {
 	flex: 1 1 0;
@@ -230,7 +97,7 @@
 	
 	font-style: normal;
 	font-weight: 600;
-	font-size: 36px;
+	font-size: 30px;
 	line-height: 44px;
 
 	
@@ -243,8 +110,8 @@
 
 .content-field {
 	width: 100%;
-	height: 517px;
-	margin-top: 20px;
+	height: 520px;
+	margin-top: 10px;
 	padding: 10px;	
 	
 	background: #37393A;
@@ -257,7 +124,6 @@
     display: flex;
     flex-direction: row;
     justify-content: right;
-    margin-top: 150px;
     padding: 10px;
     gap: 10px;
 }
