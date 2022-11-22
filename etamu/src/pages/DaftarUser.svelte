@@ -196,7 +196,7 @@
 													await deleteUserByID(
 														user.user_id
 													);
-												getAllUsers();
+												await getAllUsers();
 											}}
 											class="btn-merah">Hapus</button
 										>
