@@ -28,9 +28,6 @@
   <Route path="admin/daftaruser" component={DaftarUser} />
   <Route path="admin/buatuser" component={BuatUser} />
   <Route path="admin/visitinfo" component={VisitInfoAdmin} />
-  <Route path="otpemail" component={EmailOtp} />
-  <Route path="email_idvisit" component={EmailIdVisit} />
-  <Route path="email_notif" component={EmailNotifVisit} />
   <Route path="security/daftarkunjungan" component={DashboardSecurity} />
   <Route path="security/visitinfo" component={VisitInfoSecurity} />
   <Route path="user/daftarkunjungan" component={DashboardUser} />

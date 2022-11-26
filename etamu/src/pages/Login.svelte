@@ -4,6 +4,7 @@
     let userEmail = "";
     let userPassword = "";
 
+    let loginFailed = false;
     async function Login() {
         try {
             console.log(`${userEmail}, ${userPassword}`);
@@ -16,13 +17,30 @@
             );
             console.log(response);
             const res = response.data;
-            var expTime = new Date(new Date().getTime() + 60 * 60 * 1000);
 
             Cookies.set("token", res.data.token);
+            
+            const user = await axios.get(
+                "http://localhost:8000/api/v1/user/token",
+                {
+                    headers : {
+                        Authorization : `Bearer ${res.data.token}`,
+                    }
+                }
+            );
 
-            window.location.href = '/admin/daftarkunjungan';
+            const user_role = user.data.data.user_role;
+            
+            if(user_role.toLowerCase() === 'staff') {
+                window.location.href = '/user/daftarkunjungan';
+            } else if(user_role.toLowerCase() === 'security') {
+                window.location.href = '/security/daftarkunjungan';
+            } else if(user_role.toLowerCase() === 'admin') {
+                window.location.href = '/admin/daftarkunjungan';
+            }
         } catch (err) {
             console.log("Error : ", err);
+            loginFailed = true;
         }
     }
 </script>
@@ -62,6 +80,11 @@
                                     bind:value={userPassword}
                                 />
                             </div>
+                            {#if loginFailed}
+                                <div class="login-failed-notice">
+                                    <span>Email atau Password Salah</span>
+                                </div>
+                            {/if}
                             <div class="button input-box">
                                 <input on:click|preventDefault={Login} type="submit" value="Login" />
                             </div>
@@ -75,7 +98,9 @@
 
 <style>
     /* Google Font Link */
-
+    .login-failed-notice {
+        color: red;   
+    }
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
     * {
         margin: 0;
