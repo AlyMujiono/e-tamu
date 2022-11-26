@@ -40,8 +40,19 @@
 	}
 	async function getAllVisit() {
 		try {
+
+			const user = await axios.get(
+                "http://localhost:8000/api/v1/user/token",
+                {
+                    headers : {
+                        Authorization : `Bearer ${token}`,
+                    }
+                }
+            );
+
+			const user_id = user.data.data.user_id;
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits`,
+				`http://localhost:8000/api/v1/visits/staff/${user_id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -49,7 +60,7 @@
 				}
 			);
 			listOfVisit = response.data.data;
-
+			console.log(listOfVisit);
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
 					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
@@ -104,8 +115,18 @@
 			} */
 
 		try {
+			const user = await axios.get(
+                "http://localhost:8000/api/v1/user/token",
+                {
+                    headers : {
+                        Authorization : `Bearer ${token}`,
+                    }
+                }
+            );
+
+			const user_id = user.data.data.user_id;
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits`,
+				`http://localhost:8000/api/v1/visits/staff/${user_id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

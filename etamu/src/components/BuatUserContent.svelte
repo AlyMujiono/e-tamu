@@ -5,6 +5,14 @@
 	let token = jsCookie.get("token");
 	let user_name, user_email, user_password, user_role;
 
+	function handleClear() {
+		user_role = undefined;
+	}
+	function handleSelect(event) {
+		user_role = event.detail.value;
+		console.log(user_role);
+	}
+ 
 	async function createUser(user) {
 		try {
 			const response = await axios.post(
@@ -57,7 +65,10 @@
 		<div class="middle-container">
 			<div class="input-container">
 				<label class="input-label" for="role">Jabatan / Role</label>
-				<Select {items} />
+				<Select 
+				{items} 
+				on:select={handleSelect}
+                on:clear={handleClear}/>
 			</div>
 			<div class="input-container">
 				<label class="input-label" for="pswd">Password</label>

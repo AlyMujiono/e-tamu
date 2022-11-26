@@ -1,11 +1,21 @@
 <script>
 	import axios from "axios";
     import jsCookie from "js-cookie";
+	import Select from "svelte-select";
 
 	export let selectedUser;
 	console.log(selectedUser);
 
     let token = jsCookie.get("token");
+
+	function handleClear() {
+		selectedUser.user_role = undefined;
+	}
+	function handleSelect(event) {
+		selectedUser.user_role = event.detail.value;
+		console.log(selectedUser.user_role);
+	}
+
     async function editUserByID(user) {
 		try {
 			const response = await axios.put(
@@ -23,6 +33,7 @@
 			return null;
 		}
 	}
+	const items = ["Staff", "Admin", "Security"];
 </script>
 
 <h1>Edit User</h1>
@@ -41,7 +52,11 @@
 		<div class="middle-container">
     		<div class="input-container">
 		        <label class="input-label" for="role">Jabatan / Role</label>
-		        <input type="text" name="role" id="role" class="input-field" placeholder="Jabatan / Role" bind:value={selectedUser.user_role}>
+				<Select 
+				{items} 
+				on:select={handleSelect}
+                on:clear={handleClear}
+				bind:value={selectedUser.user_role}/>
 		    </div>
 		    <div class="input-container">
 		        <label class="input-label" for="pswd">Password</label>
