@@ -3,7 +3,7 @@
 	import Cookie from "js-cookie";
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
-	import DetailKunjungan from "../components/DetailKunjungan.svelte";
+	import DetailKunjunganSecurity from "../components/DetailKunjunganSecurity.svelte";
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
@@ -200,7 +200,7 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjungan selectedUser={selectedUser} backUri={backUri}/>
+			<DetailKunjunganSecurity selectedUser={selectedUser} backUri={backUri}/>
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
