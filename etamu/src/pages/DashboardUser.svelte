@@ -32,7 +32,7 @@
 				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
 			);
 			let user_visited_name = res.data.data.user_name;
-			result = {...result, user_visited_name};
+			result = { ...result, user_visited_name };
 			return result;
 		} catch (error) {
 			return null;
@@ -40,15 +40,14 @@
 	}
 	async function getAllVisit() {
 		try {
-
 			const user = await axios.get(
-                "http://localhost:8000/api/v1/user/token",
-                {
-                    headers : {
-                        Authorization : `Bearer ${token}`,
-                    }
-                }
-            );
+				"http://localhost:8000/api/v1/user/token",
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
 
 			const user_id = user.data.data.user_id;
 			const response = await axios.get(
@@ -116,13 +115,13 @@
 
 		try {
 			const user = await axios.get(
-                "http://localhost:8000/api/v1/user/token",
-                {
-                    headers : {
-                        Authorization : `Bearer ${token}`,
-                    }
-                }
-            );
+				"http://localhost:8000/api/v1/user/token",
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
 
 			const user_id = user.data.data.user_id;
 			const response = await axios.get(
@@ -171,7 +170,7 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjunganUser selectedUser={selectedUser} backUri={backUri}/>
+			<DetailKunjunganUser {selectedUser} {backUri} />
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
@@ -229,9 +228,10 @@
 									<div class="row-button">
 										<button
 											on:click|preventDefault={async () => {
-												selectedUser = await getVisitByID(
-													visit.visit_id
-												);
+												selectedUser =
+													await getVisitByID(
+														visit.visit_id
+													);
 												state = "detail";
 											}}
 											class="btn-biru">Detail</button
@@ -266,6 +266,8 @@
 
 		/* White */
 		color: #ffffff;
+		position: absolute;
+		right: 36px;
 	}
 
 	* {

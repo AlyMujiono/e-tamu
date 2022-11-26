@@ -32,7 +32,7 @@
 				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
 			);
 			let user_visited_name = res.data.data.user_name;
-			result = {...result, user_visited_name};
+			result = { ...result, user_visited_name };
 			return result;
 		} catch (error) {
 			return null;
@@ -119,18 +119,19 @@
 
 			if (csvLink) {
 				axios({
-			    url: `http://localhost:8000/${csvLink}`, //your url
-			    method: 'GET',
-			    responseType: 'blob', // important
+					url: `http://localhost:8000/${csvLink}`, //your url
+					method: "GET",
+					responseType: "blob", // important
 				}).then((response) => {
-				    const url = window.URL.createObjectURL(new Blob([response.data]));
-				    const link = document.createElement('a');
-				    link.href = url;
-				    link.setAttribute('download', 'visits.csv'); //or any other extension
-				    document.body.appendChild(link);
-				    link.click();
+					const url = window.URL.createObjectURL(
+						new Blob([response.data])
+					);
+					const link = document.createElement("a");
+					link.href = url;
+					link.setAttribute("download", "visits.csv"); //or any other extension
+					document.body.appendChild(link);
+					link.click();
 				});
-
 			}
 			// listOfVisit.forEach(async (visit, index) => {
 			// 	const res = await axios.get(
@@ -145,7 +146,6 @@
 		} catch (error) {
 			console.log(error);
 		}
-
 	}
 
 	onMount(async () => {
@@ -200,13 +200,12 @@
 
 	<main class="content">
 		{#if state === "detail"}
-			<DetailKunjunganSecurity selectedUser={selectedUser} backUri={backUri}/>
+			<DetailKunjunganSecurity {selectedUser} {backUri} />
 		{:else}
 			<h1>Daftar Kunjungan</h1>
 			<div class="spasi">
-				<button
-					on:click={generateSpreadsheetByDate}
-					class="btn-expdata">Export Data</button
+				<button on:click={generateSpreadsheetByDate} class="btn-expdata"
+					>Export Data</button
 				>
 				<div class="row">
 					<div class="input-container">
@@ -262,9 +261,10 @@
 									<div class="row-button">
 										<button
 											on:click|preventDefault={async () => {
-												selectedUser = await getVisitByID(
-													visit.visit_id
-												);
+												selectedUser =
+													await getVisitByID(
+														visit.visit_id
+													);
 												state = "detail";
 											}}
 											class="btn-biru">Detail</button
@@ -302,6 +302,8 @@
 
 		/* White */
 		color: #ffffff;
+		position: absolute;
+		right: 36px;
 	}
 
 	* {
