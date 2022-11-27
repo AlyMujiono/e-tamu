@@ -170,10 +170,24 @@
                     placeholder="ID Kunjungan"
                 />
             </div>
-            <div class="button-container">
-                <button on:click={searchVisit} disabled={!visit_id}
-                    >Submit</button
-                >
+            <div>
+                <div class="button-container">
+                    <button on:click={searchVisit} disabled={!visit_id}
+                        >Submit</button
+                    >
+                </div>
+            </div>
+            <div>
+                <div class="btm-container">
+                    <div class="btn-container">
+                        <button
+                            on:click={() => {
+                                window.location.href = backUri;
+                            }}
+                            id="batal-btn">Kembali</button
+                        >
+                    </div>
+                </div>
             </div>
             <h2>Id Kunjungan tidak ditemukan! Periksa kembali ID kunjungan</h2>
         </div>
@@ -269,8 +283,8 @@
         font-size: 20px;
         color: #ffffff;
         position: absolute;
-        left: 5%;
-        top: 90%;
+        left: 20%;
+        top: 58%;
     }
     .top-container {
         display: flex;
@@ -375,7 +389,7 @@
         width: 261px;
         height: 40px;
         right: 20%;
-        top: 55%;
+        top: 58%;
 
         background: #406aa8;
         border-radius: 5px;
