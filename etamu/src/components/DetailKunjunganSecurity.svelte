@@ -110,6 +110,19 @@
             </div>
         </div>
         <div class="middle-container">
+            <div>
+                <div class="input-container">
+                    <label for="id" class="input-label">ID Kunjungan</label>
+                    <input
+                        type="text"
+                        name="id"
+                        id="id"
+                        class="input-field"
+                        value={1}
+                        readonly
+                    />
+                </div>
+            </div>
             <div class="input-container">
                 <label for="tertuju" class="input-label">Tertuju</label>
                 <input
@@ -128,27 +141,31 @@
                     >Sertifikat Vaksin</label
                 >
                 <img
-                    style="color: white; height: 150px; width: 290px;"
+                    style="color: white; height: 150px; width: 290px; background: #ffffff12;"
                     src={"http://localhost:8000/" +
                         selectedUser.vaccine_certificate}
                     alt="sertifikat vaksin"
                 />
             </div>
-            <div class="status">
-                <label for="">Status : Disetujui</label>
-            </div>
-            <div class="bottom-container">
-                <div class="button-container">
-                    <button on:click={() => {}} id="visit-btn"
-                        >Tamu Datang</button
-                    >
+            <div>
+                <div class="status">
+                    <label for="">Status : Disetujui</label>
                 </div>
             </div>
-            <div class="bottom-container">
-                <div class="button-container">
-                    <button on:click={() => {}} id="end-btn"
-                        >Kunjungan Selesai</button
-                    >
+            <div class="btm-container">
+                <div class="bottom-container">
+                    <div class="button-container">
+                        <button on:click={() => {}} id="visit-btn"
+                            >Tamu Datang</button
+                        >
+                    </div>
+                </div>
+                <div class="bottom-container">
+                    <div class="button-container">
+                        <button on:click={() => {}} id="end-btn"
+                            >Kunjungan Selesai</button
+                        >
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,6 +218,12 @@
     .form-field {
         display: flex;
         flex-direction: row;
+    }
+    .btm-container {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0px;
+        margin-top: auto;
     }
     .bottom-container {
         display: flex;
@@ -262,17 +285,18 @@
         align-self: flex-end;
     }
     .status {
-        color: white;
-        font-size: 18pt;
-        padding: 12px;
-        width: 300px;
+        width: 200px;
+        height: 36.9px;
+
         background: #00b14c;
         border-radius: 5px;
-        margin: auto;
-        text-align: center;
-        margin-bottom: 30px;
-        position: absolute;
-        top: 55%;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        /* or 150% */
+
+        color: #ffffff;
     }
     #batal-btn {
         width: 200px;
@@ -291,30 +315,30 @@
     #visit-btn {
         width: 200px;
         height: 36.9px;
+
         background: #5f92de;
         border-radius: 5px;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
         line-height: 30px;
+        /* or 150% */
+
         color: #ffffff;
-        position: absolute;
-        bottom: 0%;
-        left: 65%;
     }
     #end-btn {
         width: 200px;
         height: 36.9px;
+
         background: #00b14c;
         border-radius: 5px;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
         line-height: 30px;
+        /* or 150% */
+
         color: #ffffff;
-        position: absolute;
-        bottom: 0%;
-        left: 80%;
     }
     #konfirmasi-btn {
         width: 200px;
