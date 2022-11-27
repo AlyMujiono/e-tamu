@@ -182,7 +182,7 @@
                     <div class="btn-container">
                         <button
                             on:click={() => {
-                                window.location.href = backUri;
+                                window.location.href = backUrl;
                             }}
                             id="batal-btn">Kembali</button
                         >
@@ -360,7 +360,7 @@
         position: absolute;
         width: 60%;
         height: 56px;
-        left: 10%;
+        left: 30px;
         top: 30%;
 
         /* Heading-1 */
