@@ -16,6 +16,7 @@
   import VisitInfoSecurity from "./pages/VisitInfoSecurity.svelte";
   import DashboardUser from "./pages/DashboardUser.svelte";
   import VisitInfoUser from "./pages/VisitInfoUser.svelte";
+  import Beranda from "./pages/Beranda.svelte";
 </script>
 
 <Router>
@@ -32,4 +33,5 @@
   <Route path="security/visitinfo" component={VisitInfoSecurity} />
   <Route path="user/daftarkunjungan" component={DashboardUser} />
   <Route path="user/visitinfo" component={VisitInfoUser} />
+  <Route path="beranda" component={Beranda} />
 </Router>
