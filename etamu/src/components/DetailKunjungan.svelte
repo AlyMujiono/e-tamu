@@ -57,10 +57,36 @@
                 <div class="right-container">
                     <div class="input-container">
                         <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
-                        <img style="color: white;" src="{"http://localhost:8000/"+selectedUser.vaccine_certificate}" alt="sertifikat vaksin">
+                        <img style="color: white; height: 150px; width: 290px; background: #ffffff12;" src="{"http://localhost:8000/"+selectedUser.vaccine_certificate}" alt="sertifikat vaksin">
                         
                     </div>
-                    
+                    <div>
+                        {#if selectedUser.confirmation === "1"}
+                            {#if String(selectedUser.visit_status).toLowerCase() === "belum datang"}
+                            <div class="status-red">
+                                <label for="">Status : {selectedUser.visit_status}</label>
+                            </div>
+                            {:else if String(selectedUser.visit_status).toLowerCase() === "sedang berlangsung"}
+                            <div class="status-yellow">
+                                <label for="">Status : {selectedUser.visit_status}</label>
+                            </div>
+                            {:else if String(selectedUser.visit_status).toLowerCase() === "selesai"}
+                            <div class="status-green">
+                                <label for="">Status : {selectedUser.visit_status}</label>
+                            </div>
+                            {/if}
+                        {:else}
+                            {#if selectedUser.confirmation === ""}
+                            <div class="status-red">
+                                <label for="">Status : Belum Dikonfirmasi</label>
+                            </div>
+                            {:else if selectedUser.confirmation === "0"}
+                            <div class="status-red">
+                                <label for="">Status : Ditolak</label>
+                            </div>
+                            {/if}
+                        {/if}
+                    </div>
                 </div>  
     <div class="bottom-container">
 	    <div class="button-container">
@@ -209,6 +235,57 @@ h1 {
 	
 	color: #FFFFFF;
 }
+
+.status-green {
+        width: auto;
+        height: 36.9px;
+
+        background: #00b14c;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
+        /* or 150% */
+
+        color: #ffffff;
+    }
+
+    .status-red {
+        width: auto;
+        height: 36.9px;
+
+        background: red;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
+        /* or 150% */
+
+        color: #ffffff;
+    }
+    .status-yellow {
+        width: auto;
+        height: 36.9px;
+
+        background: yellow;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
+        /* or 150% */
+
+        color: #ffffff;
+    }
+
 /* @media (max-width: 1024px) {
 	.sidebar {
 		max-width: 200px;

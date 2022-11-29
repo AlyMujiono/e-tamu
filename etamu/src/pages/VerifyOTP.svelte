@@ -7,7 +7,26 @@
     import TopNav from "../components/TopNav.svelte";
     let success = null;
     let OTP = '';
+    let resendSuccess = null;
 
+    async function resendOTP () {
+        // api/v1/visits/otp/resend
+        try {
+            const OTPToken = Cookies.get("otp");
+            const response = await axios.get("http://localhost:8000/api/v1/visits/otp/resend", {
+                headers: {
+                    Authorization : `OTP ${OTPToken}`
+                },
+            });
+            console.log(response.data);
+            if (response.data.success === true) {
+                resendSuccess = true;
+            }
+
+        } catch (error) {
+            console.log(error)    
+        }
+    }
     async function SubmitOTP () {
         try {
             const OTPToken = Cookies.get("otp")
@@ -47,6 +66,7 @@
             <button on:click={() => {window.location.href = "/registervisit/verify"}}
             >Coba Lagi</button>
         </div>
+        
     </div>
     {:else}   
         <div class="form-container">
@@ -59,7 +79,12 @@
             <div class="button-container">
                 <button on:click={SubmitOTP} disabled={OTP == ''}>Verify</button>
             </div>
-            <p>Tidak menerima kode? <a> Kirim ulang!</a></p>
+            {#if resendSuccess === true}
+            <p>kode OTP telah dikirim ulang!</p>
+            {/if}
+            <p>Tidak menerima kode? <a href="#a" on:click|preventDefault={async () => {
+                await resendOTP()
+            }}> Kirim ulang!</a></p>
         </div>
     {/if}
 </div>

@@ -149,11 +149,31 @@
 	}
 
 	onMount(async () => {
-		/* if (token === '') {
+		if (token === '') {
 				window.location.href = "/login";
-			} */
+				return
+			} 
 
 		try {
+			const user = await axios.get(
+				"http://localhost:8000/api/v1/user/token",
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			const user_role = user.data.data.user_role;
+			if(user_role.toLowerCase() === 'staff') {
+                window.location.href = '/user/daftarkunjungan';
+				return
+            } else if(user_role.toLowerCase() === 'admin') {
+                window.location.href = '/admin/daftarkunjungan';
+				return
+            }
+
+
 			const response = await axios.get(
 				`http://localhost:8000/api/v1/visits`,
 				{
@@ -183,7 +203,10 @@
 </script>
 
 <TopNav />
-<button class="logout-header">Logout</button>
+<button on:click={()=>{
+	Cookie.remove("token");
+	window.location.href = "/login";
+	}} class="logout-header">Logout</button>
 <div class="app">
 	<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
 		<div class="hamburger">
@@ -195,7 +218,10 @@
 		<img src="..\src\assets\img\avatar.png" class="profile" />
 		<h3>Security</h3>
 
-		<button class="logout-sidebar">Logout</button>
+		<button on:click={()=>{
+			Cookie.remove("token");
+			window.location.href = "/login";
+			}} class="logout-sidebar">Logout</button>
 	</aside>
 
 	<main class="content">
@@ -268,9 +294,6 @@
 												state = "detail";
 											}}
 											class="btn-biru">Detail</button
-										>
-										<button class="btn-hijau"
-											>Selesai</button
 										>
 									</div>
 								</td>
