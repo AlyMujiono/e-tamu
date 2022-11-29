@@ -10,7 +10,10 @@
 </script>
 
 <TopNav />
-<button class="login-header">Login</button>
+<button on:click={() => {
+                                window.location.href = "/login";
+                            }}
+                            class="login-header">Login</button>
 
 <div class="app">
     <main class="content">
@@ -32,14 +35,18 @@
                     <div class="btm-container">
                         <div class="bottom-container">
                             <div class="button-container">
-                                <button on:click={() => {}} id="visit-btn"
+                                <button on:click={() => {
+                                window.location.href = "/registervisit";
+                                }} id="visit-btn"
                                     >Ajukan</button
                                 >
                             </div>
                         </div>
                         <div class="bottom-container">
                             <div class="button-container">
-                                <button on:click={() => {}} id="end-btn"
+                                <button on:click={() => {
+                                window.location.href = "/visitinfo";
+                                }} id="end-btn"
                                     >Cek Status</button
                                 >
                             </div>

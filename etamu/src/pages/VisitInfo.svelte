@@ -182,7 +182,7 @@
                     <div class="btn-container">
                         <button
                             on:click={() => {
-                                window.location.href = backUrl;
+                                window.location.href = "";
                             }}
                             id="batal-btn">Kembali</button
                         >

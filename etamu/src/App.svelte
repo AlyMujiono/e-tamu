@@ -20,6 +20,7 @@
 </script>
 
 <Router>
+  <Route path="" component={Beranda} />
   <Route path="admin" component={Admin} />
   <Route path="login" component={Login} />
   <Route path="registervisit" component={RegisterVisit} />
@@ -33,5 +34,4 @@
   <Route path="security/visitinfo" component={VisitInfoSecurity} />
   <Route path="user/daftarkunjungan" component={DashboardUser} />
   <Route path="user/visitinfo" component={VisitInfoUser} />
-  <Route path="beranda" component={Beranda} />
 </Router>
