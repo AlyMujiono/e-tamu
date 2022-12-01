@@ -1,12 +1,30 @@
 <script>
     import axios from "axios";
     import jsCookie from "js-cookie";
+  import { onMount } from "svelte";
 
     export let selectedUser;
     export let backUri;
     console.log(selectedUser);
 
     let token = jsCookie.get("token");
+
+    async function updateVisitArrive(status) {
+        try {
+            const response = await axios.post(`http://localhost:8000/api/v1/visits/${selectedUser.visit_id}/confirm?status=${status}`, {}, {
+                headers : {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            const user_visited_name = selectedUser.user_visited_name;
+            const data = {...response.data.data, user_visited_name};
+            console.log(response.data);
+            
+            selectedUser = data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 </script>
 
 <h1>Detail Kunjungan</h1>
@@ -148,21 +166,46 @@
                 />
             </div>
             <div>
-                <div class="status">
-                    <label for="">Status : Disetujui</label>
-                </div>
+                {#if selectedUser.confirmation === "1"}
+                    {#if String(selectedUser.visit_status).toLowerCase() === "belum datang"}
+                    <div class="status-red">
+                        <label for="">Status : {selectedUser.visit_status}</label>
+                    </div>
+                    {:else if String(selectedUser.visit_status).toLowerCase() === "sedang berlangsung"}
+                    <div class="status-yellow">
+                        <label for="">Status : {selectedUser.visit_status}</label>
+                    </div>
+                    {:else if String(selectedUser.visit_status).toLowerCase() === "selesai"}
+                    <div class="status-green">
+                        <label for="">Status : {selectedUser.visit_status}</label>
+                    </div>
+                    {/if}
+                
+                {:else}
+                    {#if selectedUser.confirmation === ""}
+                    <div class="status-red">
+                        <label for="">Status : Belum Dikonfirmasi</label>
+                    </div>
+                    {:else if selectedUser.confirmation === "0"}
+                    <div class="status-red">
+                        <label for="">Status : Ditolak</label>
+                    </div>
+                    {/if}
+                {/if}
             </div>
             <div class="btm-container">
                 <div class="bottom-container">
                     <div class="button-container">
-                        <button on:click={() => {}} id="visit-btn"
+                        <button on:click={async () => {
+                            await updateVisitArrive(1);
+                        }} id="visit-btn"
                             >Tamu Datang</button
                         >
                     </div>
                 </div>
                 <div class="bottom-container">
                     <div class="button-container">
-                        <button on:click={() => {}} id="end-btn"
+                        <button on:click={async () => {await updateVisitArrive(2);}} id="end-btn"
                             >Kunjungan Selesai</button
                         >
                     </div>
@@ -284,8 +327,8 @@
         display: flex;
         align-self: flex-end;
     }
-    .status {
-        width: 200px;
+    .status-green {
+        width: auto;
         height: 36.9px;
 
         background: #00b14c;
@@ -294,10 +337,46 @@
         font-weight: 400;
         font-size: 20px;
         line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
         /* or 150% */
 
         color: #ffffff;
     }
+
+    .status-red {
+        width: auto;
+        height: 36.9px;
+
+        background: red;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
+        /* or 150% */
+
+        color: #ffffff;
+    }
+    .status-yellow {
+        width: auto;
+        height: 36.9px;
+
+        background: yellow;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 10px;
+        /* or 150% */
+
+        color: #ffffff;
+    }
+
     #batal-btn {
         width: 200px;
         height: 36.9px;

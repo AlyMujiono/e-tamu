@@ -112,7 +112,10 @@
 </script>
 
 <TopNav />
-<button class="logout-header">Logout</button>
+<button on:click={()=>{
+	jsCookie.remove("token");
+	window.location.href = "/login";
+	}} class="logout-header">Logout</button>
 <div class="app">
 	<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
 		<div class="hamburger">
@@ -131,7 +134,10 @@
 			<a href="#b" class="menu-item is-active">Daftar User</a>
 		</nav>
 
-		<button class="logout-sidebar">Logout</button>
+		<button on:click={()=>{
+			jsCookie.remove("token");
+			window.location.href = "/login";
+			}} class="logout-sidebar">Logout</button>
 	</aside>
 
 	<main class="content">

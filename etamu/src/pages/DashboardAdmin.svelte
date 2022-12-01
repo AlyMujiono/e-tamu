@@ -170,9 +170,27 @@
 	onMount(async () => {
 		if (token === "") {
 			window.location.href = "/login";
+			return
 		}
 
 		try {
+			const user = await axios.get(
+				"http://localhost:8000/api/v1/user/token",
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			const user_role = user.data.data.user_role;
+			if(user_role.toLowerCase() === 'security') {
+                window.location.href = '/security/daftarkunjungan';
+				return
+            } else if(user_role.toLowerCase() === 'staff') {
+                window.location.href = '/user/daftarkunjungan';
+				return
+            }
 			const response = await axios.get(
 				`http://localhost:8000/api/v1/visits`,
 				{
@@ -204,7 +222,10 @@
 </script>
 
 <TopNav />
-<button class="logout-header">Logout</button>
+<button on:click={()=>{
+	Cookie.remove("token");
+	window.location.href = "/login";
+	}} class="logout-header">Logout</button>
 <div class="app">
 	<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
 		<div class="hamburger">
@@ -221,7 +242,10 @@
 			<a href="daftaruser" class="menu-item">Daftar User</a>
 		</nav>
 
-		<button class="logout-sidebar">Logout</button>
+		<button on:click={()=>{
+			Cookie.remove("token");
+			window.location.href = "/login";
+			}} class="logout-sidebar">Logout</button>
 	</aside>
 
 	<main class="content">

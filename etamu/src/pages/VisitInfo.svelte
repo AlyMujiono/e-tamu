@@ -29,9 +29,42 @@
 <div class="container">
     {#if state == true}
         <TopNav title="ID Kunjungan : {visit.visit_id}" />
-        <div class="status-container">
-            <p class="status">Status : Disetujui.</p>
-        </div>
+            {#if visit.confirmation === "1"}
+                    {#if String(visit.visit_status).toLowerCase() === "belum datang"}
+                    <div class="status-container-red">
+                        <div class="status">
+                            <label for="">Status : {visit.visit_status}</label>
+                        </div>
+                    </div>
+                    {:else if String(visit.visit_status).toLowerCase() === "sedang berlangsung"}
+                    <div class="status-container-blue">
+                        <div class="status">
+                            <label for="">Status : {visit.visit_status}</label>
+                        </div>
+                    </div>
+                    {:else if String(visit.visit_status).toLowerCase() === "selesai"}
+                    <div class="status-container-green">
+                        <div class="status">
+                            <label for="">Status : {visit.visit_status}</label>
+                        </div>
+                    </div>
+                    {/if}
+                
+                {:else}
+                    {#if visit.confirmation === ""}
+                    <div class="status-container-red">
+                        <div class="status">
+                            <label for="">Status : Belum Dikonfirmasi</label>
+                        </div>
+                    </div>
+                    {:else if visit.confirmation === "0"}
+                    <div class="status-container-red">
+                        <div class="status">
+                            <label for="">Status : Ditolak</label>
+                        </div>
+                    </div>
+                    {/if}
+                {/if}
         <div class="main-container">
             <div class="field-container">
                 <div class="top-container">
@@ -125,6 +158,16 @@
                                 readonly
                             />
                         </div>
+                        <div class="bottom-container">
+                            <div class="button-container">
+                                <button
+                                    on:click={() => {
+                                        window.location.href = "/visitinfo";
+                                    }}
+                                    id="batal-btn">Kembali</button
+                                >
+                            </div>
+                        </div>
                     </div>
                     <div class="middle-container">
                         <div class="input-container">
@@ -147,7 +190,7 @@
                                 >Sertifikat Vaksin</label
                             >
                             <img
-                                style="color: white;"
+                                style="color: white;height: 150px; width: 290px; background: #ffffff12;"
                                 src={"http://localhost:8000/" +
                                     visit.vaccine_certificate}
                                 alt="sertifikat vaksin"
@@ -228,7 +271,7 @@
 </div>
 
 <style>
-    .status-container {
+    .status-container-green {
         position: absolute;
         width: 334.51px;
         height: 42.42px;
@@ -238,7 +281,27 @@
         background: #00b14c;
         border-radius: 5px;
     }
-    .status {
+    .status-container-blue {
+        position: absolute;
+        width: 334.51px;
+        height: 42.42px;
+        right: 5%;
+        top: 10px;
+
+        background: blue;
+        border-radius: 5px;
+    }
+    .status-container-red {
+        position: absolute;
+        width: 334.51px;
+        height: 42.42px;
+        right: 5%;
+        top: 10px;
+
+        background: red;
+        border-radius: 5px;
+    }
+    .status{
         margin: 5px;
 
         /* Heading-4 */
@@ -341,7 +404,13 @@
         display: flex;
         align-self: flex-start;
     }
-
+    .bottom-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        padding: 10px;
+        gap: 10px;
+    }
     .button-container {
         display: flex;
         align-self: flex-end;

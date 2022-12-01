@@ -109,9 +109,10 @@
 	}
 
 	onMount(async () => {
-		/* if (token === '') {
+		if (token === '') {
 				window.location.href = "/login";
-			} */
+				return
+			}
 
 		try {
 			const user = await axios.get(
@@ -123,6 +124,14 @@
 				}
 			);
 
+			const user_role = user.data.data.user_role;
+			if(user_role.toLowerCase() === 'security') {
+                window.location.href = '/security/daftarkunjungan';
+				return
+            } else if(user_role.toLowerCase() === 'admin') {
+                window.location.href = '/admin/daftarkunjungan';
+				return
+            }
 			const user_id = user.data.data.user_id;
 			const response = await axios.get(
 				`http://localhost:8000/api/v1/visits/staff/${user_id}`,
@@ -133,7 +142,7 @@
 				}
 			);
 			listOfVisit = response.data.data;
-
+			console.log(response.data)
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
 					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
