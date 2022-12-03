@@ -1,14 +1,19 @@
 <script>
 	import axios from "axios";
 	import jsCookie from "js-cookie";
-	import { onMount } from "svelte";
+	import { onMount, getContext } from "svelte";
 	import BuatUserContent from "../components/BuatUserContent.svelte";
 	import EditUserContent from "../components/EditUserContent.svelte";
 	import TopNav from "../components/TopNav.svelte";
+	import ModalDeleteUserContent from "../components/ModalDeleteUserContent.svelte";
+	
+	const { open } = getContext('simple-modal');
+
 	let selectedUser;
 	let state;
 	let navOpen = false;
 	let token = jsCookie.get("token");
+	const showDeleteModal = (deletedID, token) => open(ModalDeleteUserContent, {deletedID , token});
 	let listOfUser = [];
 	let nameSearch;
 	function handleNav() {
@@ -111,111 +116,108 @@
 	});
 </script>
 
-<TopNav />
-<button on:click={()=>{
-	jsCookie.remove("token");
-	window.location.href = "/login";
-	}} class="logout-header">Logout</button>
-<div class="app">
-	<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
-		<div class="hamburger">
-			<span />
+	<TopNav />
+	<button on:click={()=>{
+		jsCookie.remove("token");
+		window.location.href = "/login";
+		}} class="logout-header">Logout</button>
+	<div class="app">
+		<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
+			<div class="hamburger">
+				<span />
+			</div>
 		</div>
+	
+		<aside class="sidebar" class:open={navOpen}>
+			<img src="..\src\assets\img\avatar.png" class="profile" />
+			<h3>Admin</h3>
+	
+			<nav class="menu">
+				<a href="/admin/daftarkunjungan" class="menu-item"
+					>Daftar Kunjungan</a
+				>
+				<a href="#b" class="menu-item is-active">Daftar User</a>
+			</nav>
+	
+			<button on:click={()=>{
+				jsCookie.remove("token");
+				window.location.href = "/login";
+				}} class="logout-sidebar">Logout</button>
+		</aside>
+	
+		<main class="content">
+			{#if state === "edit"}
+				<EditUserContent {selectedUser} />
+			{:else if state === "create"}
+				<BuatUserContent />
+			{:else}
+				<h1>Daftar User</h1>
+				<div class="row">
+					<button
+						on:click={() => {
+							state = "create";
+						}}
+						class="btn-newuser">Buat User</button
+					>
+					<div class="input-container">
+						<label class="input-label" for="search">Search</label>
+						<input
+							bind:value={nameSearch}
+							on:change={getUsersByName}
+							type="text"
+							name="search"
+							id="search"
+							class="input-field"
+							placeholder="Masukkan Nama"
+						/>
+					</div>
+				</div>
+				<div id="scrollingBlock">
+					<table>
+						<thead>
+							<tr>
+								<th>Nama</th>
+								<th>Jabatan</th>
+								<th
+									style="display: flex; justify-content: center; border: 0px;"
+									>Aksi</th
+								>
+							</tr><tr />
+						</thead>
+						<tbody>
+							{#each listOfUser as user}
+								<tr>
+									<td>{user.user_name}</td>
+									<td>{user.user_role}</td>
+									<td>
+										<div class="row-button">
+											<button
+												on:click|preventDefault={async () => {
+													selectedUser =
+														await getUserByID(
+															user.user_id
+														);
+													state = "edit";
+												}}
+												class="btn-biru">Edit</button
+											>
+											<button
+												on:click|preventDefault={()=>{showDeleteModal(user.user_id, token)}}
+												class="btn-merah">Hapus</button
+											>
+										</div>
+									</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			{/if}
+		</main>
 	</div>
 
-	<aside class="sidebar" class:open={navOpen}>
-		<img src="..\src\assets\img\avatar.png" class="profile" />
-		<h3>Admin</h3>
 
-		<nav class="menu">
-			<a href="/admin/daftarkunjungan" class="menu-item"
-				>Daftar Kunjungan</a
-			>
-			<a href="#b" class="menu-item is-active">Daftar User</a>
-		</nav>
 
-		<button on:click={()=>{
-			jsCookie.remove("token");
-			window.location.href = "/login";
-			}} class="logout-sidebar">Logout</button>
-	</aside>
-
-	<main class="content">
-		{#if state === "edit"}
-			<EditUserContent {selectedUser} />
-		{:else if state === "create"}
-			<BuatUserContent />
-		{:else}
-			<h1>Daftar User</h1>
-			<div class="row">
-				<button
-					on:click={() => {
-						state = "create";
-					}}
-					class="btn-newuser">Buat User</button
-				>
-				<div class="input-container">
-					<label class="input-label" for="search">Search</label>
-					<input
-						bind:value={nameSearch}
-						on:change={getUsersByName}
-						type="text"
-						name="search"
-						id="search"
-						class="input-field"
-						placeholder="Masukkan Nama"
-					/>
-				</div>
-			</div>
-			<div id="scrollingBlock">
-				<table>
-					<thead>
-						<tr>
-							<th>Nama</th>
-							<th>Jabatan</th>
-							<th
-								style="display: flex; justify-content: center; border: 0px;"
-								>Aksi</th
-							>
-						</tr><tr />
-					</thead>
-					<tbody>
-						{#each listOfUser as user}
-							<tr>
-								<td>{user.user_name}</td>
-								<td>{user.user_role}</td>
-								<td>
-									<div class="row-button">
-										<button
-											on:click|preventDefault={async () => {
-												selectedUser =
-													await getUserByID(
-														user.user_id
-													);
-												state = "edit";
-											}}
-											class="btn-biru">Edit</button
-										>
-										<button
-											on:click|preventDefault={async () => {
-												let deletedUser =
-													await deleteUserByID(
-														user.user_id
-													);
-												await getAllUsers();
-											}}
-											class="btn-merah">Hapus</button
-										>
-									</div>
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</main>
-</div>
 
 <style>
 	.logout-header {

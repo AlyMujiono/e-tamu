@@ -3,7 +3,11 @@
 	import Cookie from "js-cookie";
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
+	import { getContext } from "svelte";
 	import DetailKunjungan from "../components/DetailKunjungan.svelte";
+	import ModalDeleteVisitContent from "../components/ModalDeleteVisitContent.svelte";;
+	const { open } = getContext('simple-modal');
+	const showDeleteModal = (deletedID, token) => open(ModalDeleteVisitContent, {deletedID , token});
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
@@ -319,10 +323,7 @@
 											}}
 											class="btn-biru">Detail</button
 										>
-										<button on:click|preventDefault={async () => {
-											let deleteData = await deleteVisitByID(visit.visit_id);
-											await getAllVisit();
-										}} class="btn-merah">Hapus</button>
+										<button on:click|preventDefault={showDeleteModal(visit.visit_id, token)} class="btn-merah">Hapus</button>
 									</div>
 								</td>
 							</tr>
@@ -333,6 +334,8 @@
 		{/if}
 	</main>
 </div>
+
+
 
 <style>
 	.logout-header {

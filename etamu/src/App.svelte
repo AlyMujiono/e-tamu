@@ -17,21 +17,23 @@
   import DashboardUser from "./pages/DashboardUser.svelte";
   import VisitInfoUser from "./pages/VisitInfoUser.svelte";
   import Beranda from "./pages/Beranda.svelte";
+  import { Modal } from "svelte-simple-modal";
 </script>
-
-<Router>
-  <Route path="" component={Beranda} />
-  <Route path="admin" component={Admin} />
-  <Route path="login" component={Login} />
-  <Route path="registervisit" component={RegisterVisit} />
-  <Route path="registervisit/verify" component={VerifyOtp} />
-  <Route path="visitinfo" component={VisitInfo} />
-  <Route path="admin/daftarkunjungan" component={DashboardAdmin} />
-  <Route path="admin/daftaruser" component={DaftarUser} />
-  <Route path="admin/buatuser" component={BuatUser} />
-  <Route path="admin/visitinfo" component={VisitInfoAdmin} />
-  <Route path="security/daftarkunjungan" component={DashboardSecurity} />
-  <Route path="security/visitinfo" component={VisitInfoSecurity} />
-  <Route path="user/daftarkunjungan" component={DashboardUser} />
-  <Route path="user/visitinfo" component={VisitInfoUser} />
-</Router>
+<Modal>
+  <Router>
+    <Route path="" component={Beranda} />
+    <Route path="admin" component={Admin} />
+    <Route path="login" component={Login} />
+    <Route path="registervisit" component={RegisterVisit} />
+    <Route path="registervisit/verify" component={VerifyOtp} />
+    <Route path="visitinfo" component={VisitInfo} />
+    <Route path="admin/daftarkunjungan" component={DashboardAdmin} />
+    <Route path="admin/daftaruser" component={DaftarUser} />
+    <Route path="admin/buatuser" component={BuatUser} />
+    <Route path="admin/visitinfo" component={VisitInfoAdmin} />
+    <Route path="security/daftarkunjungan" component={DashboardSecurity} />
+    <Route path="security/visitinfo" component={VisitInfoSecurity} />
+    <Route path="user/daftarkunjungan" component={DashboardUser} />
+    <Route path="user/visitinfo" component={VisitInfoUser} />
+  </Router>
+</Modal>
