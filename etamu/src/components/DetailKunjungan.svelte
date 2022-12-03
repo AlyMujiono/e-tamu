@@ -67,7 +67,7 @@
                                 <label for="">Status : {selectedUser.visit_status}</label>
                             </div>
                             {:else if String(selectedUser.visit_status).toLowerCase() === "sedang berlangsung"}
-                            <div class="status-yellow">
+                            <div class="status-blue">
                                 <label for="">Status : {selectedUser.visit_status}</label>
                             </div>
                             {:else if String(selectedUser.visit_status).toLowerCase() === "selesai"}
@@ -269,11 +269,11 @@ h1 {
 
         color: #ffffff;
     }
-    .status-yellow {
+    .status-blue {
         width: auto;
         height: 36.9px;
 
-        background: yellow;
+        background: blue;
         border-radius: 5px;
         font-style: normal;
         font-weight: 400;
