@@ -8,7 +8,7 @@
     async function deleteVisitByID(id) {
 		try {
 			const response = await axios.delete(
-				`http://localhost:8000/api/v1/visits/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

@@ -22,7 +22,7 @@
 	async function getUserByID(id) {
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/user/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/user/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@
 	async function deleteUserByID(id) {
 		try {
 			const response = await axios.delete(
-				`http://localhost:8000/api/v1/users/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/users/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@
 	async function getAllUsers() {
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/users`,
+				`https://api-e-tamu.herokuapp.com/api/v1/users`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@
 		}
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/users?name=${nameSearch}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/users?name=${nameSearch}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@
 		}
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/users`,
+				`https://api-e-tamu.herokuapp.com/api/v1/users`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

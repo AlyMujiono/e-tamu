@@ -167,7 +167,7 @@
                             >
                             <img
                                 style="color: white;height: 150px; width: 290px; background: #ffffff12;"
-                                src={"http://localhost:8000/" +
+                                src={`https://api-e-tamu.herokuapp.com/` +
                                     visit.vaccine_certificate}
                                 alt="sertifikat vaksin"
                             />

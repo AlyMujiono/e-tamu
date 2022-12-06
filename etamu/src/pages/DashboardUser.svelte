@@ -19,7 +19,7 @@
 	async function getVisitByID(id) {
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@
 
 			let result = response.data.data;
 			const res = await axios.get(
-				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
+				`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${result.user_visited_id}`
 			);
 			let user_visited_name = res.data.data.user_name;
 			result = { ...result, user_visited_name };
@@ -41,7 +41,7 @@
 	async function getAllVisit() {
 		try {
 			const user = await axios.get(
-				"http://localhost:8000/api/v1/user/token",
+				"https://api-e-tamu.herokuapp.com/api/v1/user/token",
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -51,7 +51,7 @@
 
 			const user_id = user.data.data.user_id;
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/staff/${user_id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/staff/${user_id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@
 			console.log(listOfVisit);
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;
@@ -83,7 +83,7 @@
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/date`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/date`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@
 
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;
@@ -116,7 +116,7 @@
 
 		try {
 			const user = await axios.get(
-				"http://localhost:8000/api/v1/user/token",
+				"https://api-e-tamu.herokuapp.com/api/v1/user/token",
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -134,7 +134,7 @@
             }
 			const user_id = user.data.data.user_id;
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/staff/${user_id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/staff/${user_id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -145,7 +145,7 @@
 			console.log(response.data)
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;

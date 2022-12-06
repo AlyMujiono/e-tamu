@@ -11,7 +11,7 @@
 
     async function updateVisitArrive(status) {
         try {
-            const response = await axios.post(`http://localhost:8000/api/v1/visits/${selectedUser.visit_id}/confirm?status=${status}`, {}, {
+            const response = await axios.post(`https://api-e-tamu.herokuapp.com/api/v1/visits/${selectedUser.visit_id}/confirm?status=${status}`, {}, {
                 headers : {
                     Authorization: `Bearer ${token}`
                 }
@@ -160,7 +160,7 @@
                 >
                 <img
                     style="color: white; height: 150px; width: 290px; background: #ffffff12;"
-                    src={"http://localhost:8000/" +
+                    src={`https://api-e-tamu.herokuapp.com/8000/` +
                         selectedUser.vaccine_certificate}
                     alt="sertifikat vaksin"
                 />

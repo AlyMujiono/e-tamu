@@ -19,7 +19,7 @@
 	async function editUserByID(user) {
 		try {
 			const response = await axios.put(
-				`http://localhost:8000/api/v1/user`,
+				`https://api-e-tamu.herokuapp.com/api/v1/user`,
 				user,
 				{
 					headers: {
