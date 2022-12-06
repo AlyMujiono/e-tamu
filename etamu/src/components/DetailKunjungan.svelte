@@ -57,7 +57,7 @@
                 <div class="right-container">
                     <div class="input-container">
                         <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
-                        <img style="color: white; height: 150px; width: 290px; background: #ffffff12;" src="{"http://localhost:8000/"+selectedUser.vaccine_certificate}" alt="sertifikat vaksin">
+                        <img style="color: white; height: 150px; width: 290px; background: #ffffff12;" src="{"https://api-e-tamu.herokuapp.com//"+selectedUser.vaccine_certificate}" alt="sertifikat vaksin">
                         
                     </div>
                     <div>
