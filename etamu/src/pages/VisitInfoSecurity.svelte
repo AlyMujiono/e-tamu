@@ -8,9 +8,9 @@
     let visit = undefined;
     async function searchVisit () {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/visits/${visit_id}`);
+            const response = await axios.get(`https://api-e-tamu.herokuapp.com/api/v1/visits/${visit_id}`);
             visit = response.data.data;
-            const responseGetStaff = await axios.get(`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`)
+            const responseGetStaff = await axios.get(`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`)
             state = responseGetStaff.data.success;
             visit = {...visit, user_visited_name : responseGetStaff.data.data.user_name};
             console.log("visit : ", visit);
@@ -77,7 +77,7 @@
                 <div class="right-container">
                     <div class="input-container">
                         <label class="input-label" for="sertifikatVaksin">Sertifikat Vaksin</label>
-                        <img style="color: white;" src="{"http://localhost:8000/"+visit.vaccine_certificate}" alt="sertifikat vaksin">
+                        <img style="color: white;" src="{"https://api-e-tamu.herokuapp.com/"+visit.vaccine_certificate}" alt="sertifikat vaksin">
                         
                     </div>
                     

@@ -8,11 +8,11 @@
     async function searchVisit() {
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/v1/visits/${visit_id}`
+                `https://api-e-tamu.herokuapp.com/api/v1/visits/${visit_id}`
             );
             visit = response.data.data;
             const responseGetStaff = await axios.get(
-                `http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+                `https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
             );
             state = responseGetStaff.data.success;
             visit = {

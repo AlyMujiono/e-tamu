@@ -13,7 +13,7 @@
         // api/v1/visits/otp/resend
         try {
             const OTPToken = Cookies.get("otp");
-            const response = await axios.get("http://localhost:8000/api/v1/visits/otp/resend", {
+            const response = await axios.get("https://api-e-tamu.herokuapp.com/api/v1/visits/otp/resend", {
                 headers: {
                     Authorization : `OTP ${OTPToken}`
                 },
@@ -32,7 +32,7 @@
             const OTPToken = Cookies.get("otp")
             const response = await axios({
             method: 'post',
-            url: 'http://localhost:8000/api/v1/visit/verify',
+            url: 'https://api-e-tamu.herokuapp.com/api/v1/visit/verify',
             data : {otp_token : OTP},
             headers: {"Authorization" : `OTP ${OTPToken}`},
              })

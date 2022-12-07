@@ -16,7 +16,7 @@
 	async function createUser(user) {
 		try {
 			const response = await axios.post(
-				`http://localhost:8000/api/v1/user`,
+				`https://api-e-tamu.herokuapp.com//api/v1/user`,
 				user,
 				{
 					headers: {

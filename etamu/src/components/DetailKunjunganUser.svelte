@@ -12,7 +12,7 @@
         try {
             let response;
             if (state === "accept") {
-                response = await axios.post(`http://localhost:8000/api/v1/visits/${selectedUser.visit_id}/acceptproposal`, {}, {
+                response = await axios.post(`https://api-e-tamu.herokuapp.com/api/v1/visits/${selectedUser.visit_id}/acceptproposal`, {}, {
                     headers : {
                         Authorization : `Bearer ${token}`
                     }
@@ -25,7 +25,7 @@
 
                 selectedUser = {...data, user_visited_name};
             } else if (state === "reject") {
-                response = await axios.post(`http://localhost:8000/api/v1/visits/${selectedUser.visit_id}/cancelproposal`, {}, {
+                response = await axios.post(`https://api-e-tamu.herokuapp.com/api/v1/visits/${selectedUser.visit_id}/cancelproposal`, {}, {
                     headers : {
                         Authorization : `Bearer ${token}`
                     }
@@ -179,7 +179,7 @@
                 <img
                     style="color: white; height: 150px; width: 290px; background: rgba(255, 255, 255, 0.07);
                 }"
-                    src={"http://localhost:8000/" +
+                    src={"https://api-e-tamu.herokuapp.com/" +
                         selectedUser.vaccine_certificate}
                     alt="sertifikat vaksin"
                 />
