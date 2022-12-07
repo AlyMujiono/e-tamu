@@ -1,6 +1,7 @@
 <script>
     import Select from "svelte-select";
     import TopNav from "../components/TopNav.svelte";
+    import GambarBeranda from "../assets/img/gambar-halaman-utama.jpeg";
     let navOpen = false;
 
     function handleNav() {
@@ -54,9 +55,9 @@
                     </div>
                 </div>
                 <div class="right-container">
-                    <div class="img">
-                        <img src="" alt="" />
-                    </div>
+                    <!-- <div class="img"> -->
+                        <img class="img" src="{GambarBeranda}" alt="Gambar Pabrik" />
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -64,6 +65,10 @@
 </div>
 
 <style>
+    /* img {
+        height: auto;
+        width: auto;
+    } */
     label {
         width: 462px;
         height: 112px;

@@ -3,7 +3,11 @@
 	import Cookie from "js-cookie";
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
+	import { getContext } from "svelte";
 	import DetailKunjungan from "../components/DetailKunjungan.svelte";
+	import ModalDeleteVisitContent from "../components/ModalDeleteVisitContent.svelte";;
+	const { open } = getContext('simple-modal');
+	const showDeleteModal = (deletedID, token) => open(ModalDeleteVisitContent, {deletedID , token});
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
@@ -20,7 +24,7 @@
 	async function deleteVisitByID(id) {
 		try {
 			const response = await axios.delete(
-				`http://localhost:8000/api/v1/visits/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -38,7 +42,7 @@
 	async function getVisitByID(id) {
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/${id}`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -48,7 +52,7 @@
 
 			let result = response.data.data;
 			const res = await axios.get(
-				`http://localhost:8000/api/v1/visit/users/${result.user_visited_id}`
+				`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${result.user_visited_id}`
 			);
 			let user_visited_name = res.data.data.user_name;
 			result = {...result, user_visited_name};
@@ -60,7 +64,7 @@
 	async function getAllVisit() {
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -71,7 +75,7 @@
 
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;
@@ -92,7 +96,7 @@
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/date`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/date`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -104,7 +108,7 @@
 
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;
@@ -119,13 +123,13 @@
 
 	async function generateSpreadsheetByDate() {
 		if (!startDate || !endDate) {
-			// getAllVisit();
+			getAllVisit();
 			return;
 		}
 
 		try {
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits/generate`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits/generate`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -138,7 +142,7 @@
 
 			if (csvLink) {
 				axios({
-			    url: `http://localhost:8000/${csvLink}`, //your url
+			    url: `https://api-e-tamu.herokuapp.com/${csvLink}`, //your url
 			    method: 'GET',
 			    responseType: 'blob', // important
 				}).then((response) => {
@@ -175,7 +179,7 @@
 
 		try {
 			const user = await axios.get(
-				"http://localhost:8000/api/v1/user/token",
+				`https://api-e-tamu.herokuapp.com/api/v1/user/token`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -192,7 +196,7 @@
 				return
             }
 			const response = await axios.get(
-				`http://localhost:8000/api/v1/visits`,
+				`https://api-e-tamu.herokuapp.com/api/v1/visits`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -203,7 +207,7 @@
 
 			listOfVisit.forEach(async (visit, index) => {
 				const res = await axios.get(
-					`http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+					`https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
 				);
 
 				let user_visited_name = res.data.data.user_name;
@@ -319,10 +323,7 @@
 											}}
 											class="btn-biru">Detail</button
 										>
-										<button on:click|preventDefault={async () => {
-											let deleteData = await deleteVisitByID(visit.visit_id);
-											await getAllVisit();
-										}} class="btn-merah">Hapus</button>
+										<button on:click|preventDefault={showDeleteModal(visit.visit_id, token)} class="btn-merah">Hapus</button>
 									</div>
 								</td>
 							</tr>
@@ -333,6 +334,8 @@
 		{/if}
 	</main>
 </div>
+
+
 
 <style>
 	.logout-header {

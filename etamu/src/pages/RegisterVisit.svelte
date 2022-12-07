@@ -20,7 +20,7 @@
     async function getAllUsers(text = "") {
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/v1/visit/users?name=${text}`
+                `https://api-e-tamu.herokuapp.com/api/v1/visit/users?name=${text}`
             );
             console.log("Response : ", response.data.data);
             return response.data.data;
@@ -65,7 +65,7 @@
 
         const response = await axios({
             method: "post",
-            url: "http://localhost:8000/api/v1/visit/create",
+            url: "https://api-e-tamu.herokuapp.com/api/v1/visit/create",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
         });

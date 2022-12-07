@@ -1,6 +1,7 @@
 <script>
     import axios from "axios";
     import Cookies from "js-cookie";
+    import img from "../assets/img/33.jpg"
     let userEmail = "";
     let userPassword = "";
 
@@ -9,7 +10,7 @@
         try {
             console.log(`${userEmail}, ${userPassword}`);
             const response = await axios.post(
-                "http://localhost:8000/api/v1/login",
+                "https://api-e-tamu.herokuapp.com/api/v1/login",
                 {
                     user_email: userEmail,
                     user_password: userPassword,
@@ -21,7 +22,7 @@
             Cookies.set("token", res.data.token);
             
             const user = await axios.get(
-                "http://localhost:8000/api/v1/user/token",
+                "https://api-e-tamu.herokuapp.com/api/v1/user/token",
                 {
                     headers : {
                         Authorization : `Bearer ${res.data.token}`,
@@ -48,7 +49,7 @@
 <div class="main-container">
     <div class="container">
         <div class="cover">
-            <img class="backImg" src="src\assets\img\33.jpg" alt="" />
+            <img class="backImg" src="{img}" alt="image" />
         </div>
         <div class="forms">
             <div class="form-content">

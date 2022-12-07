@@ -1,17 +1,18 @@
 <script>
     import TopNav from "../components/TopNav.svelte";
     import axios from "axios";
+    import VisitInfoTamu from "../components/VisitInfoTamu.svelte";
     let visit_id = "";
     let state = null;
     let visit = undefined;
     async function searchVisit() {
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/v1/visits/${visit_id}`
+                `https://api-e-tamu.herokuapp.com/api/v1/visits/${visit_id}`
             );
             visit = response.data.data;
             const responseGetStaff = await axios.get(
-                `http://localhost:8000/api/v1/visit/users/${visit.user_visited_id}`
+                `https://api-e-tamu.herokuapp.com/api/v1/visit/users/${visit.user_visited_id}`
             );
             state = responseGetStaff.data.success;
             visit = {
@@ -28,178 +29,7 @@
 
 <div class="container">
     {#if state == true}
-        <TopNav title="ID Kunjungan : {visit.visit_id}" />
-            {#if visit.confirmation === "1"}
-                    {#if String(visit.visit_status).toLowerCase() === "belum datang"}
-                    <div class="status-container-red">
-                        <div class="status">
-                            <label for="">Status : {visit.visit_status}</label>
-                        </div>
-                    </div>
-                    {:else if String(visit.visit_status).toLowerCase() === "sedang berlangsung"}
-                    <div class="status-container-blue">
-                        <div class="status">
-                            <label for="">Status : {visit.visit_status}</label>
-                        </div>
-                    </div>
-                    {:else if String(visit.visit_status).toLowerCase() === "selesai"}
-                    <div class="status-container-green">
-                        <div class="status">
-                            <label for="">Status : {visit.visit_status}</label>
-                        </div>
-                    </div>
-                    {/if}
-                
-                {:else}
-                    {#if visit.confirmation === ""}
-                    <div class="status-container-red">
-                        <div class="status">
-                            <label for="">Status : Belum Dikonfirmasi</label>
-                        </div>
-                    </div>
-                    {:else if visit.confirmation === "0"}
-                    <div class="status-container-red">
-                        <div class="status">
-                            <label for="">Status : Ditolak</label>
-                        </div>
-                    </div>
-                    {/if}
-                {/if}
-        <div class="main-container">
-            <div class="field-container">
-                <div class="top-container">
-                    <div class="left-container">
-                        <div class="input-container">
-                            <label class="input-label" for="nama-lengkap"
-                                >Nama Lengkap</label
-                            >
-                            <input
-                                type="text"
-                                name="nama-lengkap"
-                                id="nama-lengkap"
-                                class="input-field"
-                                value={visit.guest_name}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="email">Email</label>
-                            <input
-                                type="text"
-                                name="email"
-                                id="email"
-                                class="input-field"
-                                value={visit.guest_email}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="tujaun"
-                                >Tujuan</label
-                            >
-                            <input
-                                type="text"
-                                name="tujuan"
-                                id="tujuan"
-                                class="input-field"
-                                value={visit.visit_intention}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="jumlah-pengunjung"
-                                >Jumlah Pengunjung</label
-                            >
-                            <input
-                                type="number"
-                                name="jumlah pengunjung"
-                                id="jumlah-pengunjung"
-                                class="input-field"
-                                placeholder={visit.guest_count}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="transportasi"
-                                >Transportasi</label
-                            >
-                            <input
-                                type="text"
-                                name="transportasi"
-                                id="transportasi"
-                                class="input-field"
-                                value={visit.transportation}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="tanggal"
-                                >Tanggal Kunjungan</label
-                            >
-                            <input
-                                type="text"
-                                name="tanggal"
-                                id="tanggal"
-                                class="input-field"
-                                value={visit.visit_date}
-                                readonly
-                            />
-                        </div>
-                        <div class="input-container">
-                            <label class="input-label" for="waktu"
-                                >Waktu Kunjungan</label
-                            >
-                            <input
-                                type="text"
-                                name="waktu"
-                                id="waktu"
-                                class="input-field"
-                                value={visit.visit_hour}
-                                readonly
-                            />
-                        </div>
-                        <div class="bottom-container">
-                            <div class="button-container">
-                                <button
-                                    on:click={() => {
-                                        window.location.href = "/visitinfo";
-                                    }}
-                                    id="batal-btn">Kembali</button
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle-container">
-                        <div class="input-container">
-                            <label for="tertuju" class="input-label"
-                                >Tertuju</label
-                            >
-                            <input
-                                type="text"
-                                name="tertuju"
-                                id="tertuju"
-                                class="input-field"
-                                value={visit.user_visited_name}
-                                readonly
-                            />
-                        </div>
-                    </div>
-                    <div class="right-container">
-                        <div class="input-container">
-                            <label class="input-label" for="sertifikatVaksin"
-                                >Sertifikat Vaksin</label
-                            >
-                            <img
-                                style="color: white;height: 150px; width: 290px; background: #ffffff12;"
-                                src={"http://localhost:8000/" +
-                                    visit.vaccine_certificate}
-                                alt="sertifikat vaksin"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <VisitInfoTamu visit={visit} />
     {:else if state == false}
         <TopNav title="Cek Status Kunjungan" />
         <div class="form-container">
