@@ -6,6 +6,7 @@
 	import EditUserContent from "../components/EditUserContent.svelte";
 	import TopNav from "../components/TopNav.svelte";
 	import ModalDeleteUserContent from "../components/ModalDeleteUserContent.svelte";
+	import Avatar from "../assets/img/avatar.png"
 	
 	const { open } = getContext('simple-modal');
 
@@ -129,7 +130,7 @@
 		</div>
 	
 		<aside class="sidebar" class:open={navOpen}>
-			<img src="..\src\assets\img\avatar.png" class="profile" />
+			<img src="{Avatar}" class="profile" />
 			<h3>Admin</h3>
 	
 			<nav class="menu">

@@ -6,6 +6,7 @@
 	import { getContext } from "svelte";
 	import DetailKunjungan from "../components/DetailKunjungan.svelte";
 	import ModalDeleteVisitContent from "../components/ModalDeleteVisitContent.svelte";;
+	import Avatar from "../assets/img/avatar.png"
 	const { open } = getContext('simple-modal');
 	const showDeleteModal = (deletedID, token) => open(ModalDeleteVisitContent, {deletedID , token});
 	let navOpen = false;
@@ -238,7 +239,7 @@
 	</div>
 
 	<aside class="sidebar" class:open={navOpen}>
-		<img src="..\src\assets\img\avatar.png" class="profile" />
+		<img src="{Avatar}" class="profile" />
 		<h3>Admin</h3>
 
 		<nav class="menu">
