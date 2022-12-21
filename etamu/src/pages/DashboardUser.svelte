@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
 	import DetailKunjunganUser from "../components/DetailKunjunganUser.svelte";
+	import Avatar from "../assets/img/avatar.png"
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
@@ -162,7 +163,10 @@
 </script>
 
 <TopNav />
-<button class="logout-header">Logout</button>
+<button on:click={()=>{
+	Cookie.remove("token");
+	window.location.href = "/login";
+	}} class="logout-header">Logout</button>
 <div class="app">
 	<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
 		<div class="hamburger">
@@ -171,10 +175,13 @@
 	</div>
 
 	<aside class="sidebar" class:open={navOpen}>
-		<img src="..\src\assets\img\avatar.png" class="profile" />
+		<img src="{Avatar}" class="profile" />
 		<h3>User</h3>
 
-		<button class="logout-sidebar">Logout</button>
+		<button on:click={()=>{
+			Cookie.remove("token");
+			window.location.href = "/login";
+			}} class="logout-sidebar">Logout</button>
 	</aside>
 
 	<main class="content">
