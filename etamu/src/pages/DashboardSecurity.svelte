@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import TopNav from "../components/TopNav.svelte";
 	import DetailKunjunganSecurity from "../components/DetailKunjunganSecurity.svelte";
+	import Avatar from "../assets/img/avatar.png"
 	let navOpen = false;
 	let listOfVisit = [];
 	let startDate;
@@ -215,7 +216,7 @@
 	</div>
 
 	<aside class="sidebar" class:open={navOpen}>
-		<img src="..\src\assets\img\avatar.png" class="profile" />
+		<img src="{Avatar}" class="profile" />
 		<h3>Security</h3>
 
 		<button on:click={()=>{

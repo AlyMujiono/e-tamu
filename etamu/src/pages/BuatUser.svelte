@@ -1,6 +1,7 @@
 <script>
 	import Select from 'svelte-select';
   import TopNav from "../components/TopNav.svelte";
+  import Cookie from 'js-cookie';
 	let navOpen = false;
 	
 	function handleNav() {
@@ -10,7 +11,10 @@
 </script>
 
 <TopNav/>
-<button class="logout-header">Logout</button>
+<button on:click={()=>{
+	Cookie.remove("token");
+	window.location.href = "/login";
+	}} class="logout-header">Logout</button>
 <div class="app">
 		<div class="menu-toggle" class:change={navOpen} on:click={handleNav}>
 			<div class="hamburger">
@@ -27,7 +31,10 @@
 				<a href="/admin/daftaruser" class="menu-item is-active">Daftar User</a>
 			</nav>
 
-			<button class="logout-sidebar">Logout</button>
+			<button on:click={()=>{
+				Cookie.remove("token");
+				window.location.href = "/login";
+				}} class="logout-sidebar">Logout</button>
 
 		</aside>
 
