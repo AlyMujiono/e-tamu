@@ -16,7 +16,7 @@
 	async function createUser(user) {
 		try {
 			const response = await axios.post(
-				`https://api-e-tamu.herokuapp.com//api/v1/user`,
+				`https://api-e-tamu.herokuapp.com/api/v1/user`,
 				user,
 				{
 					headers: {
@@ -24,9 +24,10 @@
 					},
 				}
 			);
-
+			
 			return response.data.data;
 		} catch (error) {
+			console.log(error);
 			return null;
 		}
 	}
